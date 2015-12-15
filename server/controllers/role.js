@@ -3,6 +3,7 @@
   var Role = require('../models/role');
   module.exports = {
 
+// Creates a new role resource into the DB
     createRole: function(req, res) {
       var role = new Role();
       role.title = req.body.title;
@@ -19,6 +20,7 @@
       });
     },
 
+// Gets all roles resource from the DB
     getAllRoles: function(req, res) {
       Role.find(function(err, roles) {
         if (err) {
@@ -30,22 +32,7 @@
       });
     },
 
-    // findRole: function(req, res) {
-    //   Role.findOne({
-    //       title: req.params.title
-    //     })
-    //     .exec(function(err, role) {
-    //       if (err) {
-    //         res.send(err);
-    //       } else {
-    //         res.status(200).json({
-    //           role: role
-    //         });
-    //       }
-    //     });
-    // },
-
-
+// Updates a specfied role resouce with new information
     updateRole: function(req, res) {
       Role.findByIdAndUpdate(req.params.id, {
         role: req.body.title

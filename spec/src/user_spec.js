@@ -7,7 +7,7 @@ var userId, token;
 
 (function() {
   'use strict';
-  describe('Get all users', function() {
+  describe('Test suites for the User Resource', function() {
     frisby.create('Get allUsers endpoint')
       .get('http://localhost:3000/api/users')
       .expectStatus(200)
@@ -23,9 +23,7 @@ var userId, token;
         });
     });
 
-
-
-    describe('Ensures a new user is created on every POST request', function() {
+    it('Should ensures a new user is created on every POST request', function() {
       frisby.create('Ensuers a new  user is created')
         .post('http://localhost:3000/api/users', {
           firstname: faker.name.findName(),
@@ -40,8 +38,6 @@ var userId, token;
         })
         .toss();
     });
-
-
 
     it('Should return that the user successfully logged in', function(done) {
       request

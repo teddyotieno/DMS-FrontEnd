@@ -1,7 +1,7 @@
 var Role = require('../controllers/role');
 var Authentication = require('../controllers/auth');
 module.exports = function(app, express) {
-  // Users Routes
+  // Roles Routes
 
   var apiRouter = express.Router();
 

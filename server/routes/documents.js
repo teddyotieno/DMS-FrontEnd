@@ -19,6 +19,9 @@ module.exports = function(app, express) {
     .post(Documents.createDocument)
     .get(Documents.getAllDocuments);
 
+  apiRouter.route('/documents/:role_id')
+    .get(Documents.getAllByRole);
+
   app.use('/api', apiRouter);
 
 };

@@ -3,6 +3,8 @@
   var Document = require('../models/document');
 
   module.exports = {
+
+// Creates a document
     createDocument: function(req, res) {
       var document = new Document;
       document.title = req.body.title;
@@ -22,6 +24,7 @@
       console.log(res);
     },
 
+// Gets all document resources in the DB
     getAllDocuments: function(req, res) {
       Document.find(function(err, documents) {
         if (err) {
@@ -43,6 +46,22 @@
       });
     },
 
+// Returns all the documents of the same role
+    getAllByRole: function(req, res) {
+      Document.find({role: req.params.rold_id})
+        .populate('role')
+        .exec(function(err, docs) {
+          if(err) {
+            return err;
+          } else {
+            return res.status(200).json({
+              documents: docs
+            });
+          }
+        });
+    },
+
+// Updates a specified document created by the user
     update: function(req, res) {
       Document.findById(req.params.doc_id, function(err, document) {
         if (err) {
@@ -69,6 +88,7 @@
       });
     },
 
+// Deletes a specified document by the User who created it
     delete: function(req, res) {
       Document.remove({
         _id: req.params.doc_id
@@ -76,7 +96,6 @@
         if (err) {
           res.send(err);
         }
-
         res.json({
           message: 'Document successfully deleted!!'
         });
