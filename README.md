@@ -12,13 +12,13 @@ The system manages documents, users and user roles. Each document defines access
 
 ## Express Routes
 
-The Express module was used to create the routes. The routes are defined in the file <p>index.js</p>. The server has to be started for the routes to be accessible. Start the server by running <p>nodemon index.js</p> or <p>npm test</p>
+The Express module was used to create the routes. The routes are defined in the file `index.js`. The server has to be started for the routes to be accessible. Start the server by running `nodemon index.js` or `npm test`
 
 
 ## Seeding
 
 - Once all the dependencies have been installed.
-- Run <p>npm test</p> to seed all the models
+- Run `npm test` to seed all the models
 
 
 ## Testing
@@ -26,4 +26,4 @@ The Express module was used to create the routes. The routes are defined in the 
 Testing is done using the superagent and frisby modules. Both superagent and frisby are used to make API requets to the server and the tests are made on the responses of the requests.
 - Make sure you have installed jasmine-node globally
 - Navigate towards the project directory
-- Run <p>npm test</p> to spurn the server as well as run the tests
+- Run `npm test` to spurn the server as well as run the tests
