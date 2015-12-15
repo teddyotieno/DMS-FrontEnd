@@ -27,7 +27,7 @@ var DocumentSchema = new Schema({
 });
 
 DocumentSchema.pre('save', function(next) {
-  now = new Date();
+  var now = new Date();
   this.lastModified = now;
   if (!this.dateCreated) {
     this.dateCreated = now;

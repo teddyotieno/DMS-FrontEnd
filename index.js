@@ -6,16 +6,8 @@ var morgan = require('morgan');
 var port = 3000;
 var db = require('./server/config/db');
 
-// Require Mongoose and connect to local db
-var mongoose = require('mongoose');
-mongoose.connect(db.url, function(err) {
-  if (err) {
-    console.log('Connection Unsuccessful');
-  }
-  else {
-    console.log('Successful connected to the Database');
-  }
-});
+
+require('./seeds/seed');
 
 
 // Use bodyparser so that we can grab infromation from POST requests

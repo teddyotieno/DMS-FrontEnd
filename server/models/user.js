@@ -11,7 +11,7 @@ var UserSchema = new Schema({
     second: {
       type: String,
       required: true
-    },
+    }
   },
   username: {
     type: String,

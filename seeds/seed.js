@@ -1,14 +1,14 @@
 var seeder = require('mongoose-seed');
-var db = require('../config/db');
+var db = require('../server/config/db');
 
 // Connect to MongoDB via Mongoose
 seeder.connect(db.url, function() {
 
   // Load Mongoose models
   seeder.loadModels([
-    __dirname + '/../models/user.js',
-    __dirname + '/../models/document.js',
-    __dirname + '/../models/role.js'
+    '../DMS/server/models/user.js',
+    '../DMS/server/models/document.js',
+    '../DMS/server/models/role.js'
   ]);
 
   // Clear specified collections
