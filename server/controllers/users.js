@@ -1,7 +1,6 @@
 (function() {
   'use strict';
   var User = require('../models/user');
-  var Role = require('../models/role');
   var Document = require('../models/document');
   var jwt = require('jsonwebtoken');
   var superSecret = 'teddyotienoasoladms';

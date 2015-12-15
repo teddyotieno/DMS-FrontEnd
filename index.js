@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var port = 3000;
-var db = require('./config/db');
+var db = require('./server/config/db');
 
 // Require Mongoose and connect to local db
 var mongoose = require('mongoose');
@@ -35,9 +35,9 @@ app.get('/', function(req, res) {
 
 
 // Configure our routes
-require('./routes/users')(app, express);
-require('./routes/documents')(app, express);
-require('./routes/roles')(app, express);
+require('./server/routes/users')(app, express);
+require('./server/routes/documents')(app, express);
+require('./server/routes/roles')(app, express);
 
 
 

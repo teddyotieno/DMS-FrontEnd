@@ -1,4 +1,5 @@
 var request = require('superagent');
+var faker = require('faker');
 var base_url = 'http://localhost:3000';
 var userId, docId, token;
 
@@ -57,7 +58,7 @@ var userId, docId, token;
     it('Should create a new unique role', function(done) {
       request
         .post(base_url + '/api/roles', {
-          title: 'Third-Party'
+          title: faker.internet.email()
         })
         .set('x-access-token', token)
         .accept('application/json')
@@ -81,69 +82,6 @@ var userId, docId, token;
           expect(res.body.message).toBe('Role successfully updated');
           done();
         });
-
-
-
     });
-
-    // it('Should store a newly created document by the logged in user', function(done) {
-    //   request
-    //     .post(base_url + '/api/documents', {
-    //       title: 'This is a new Docmument being created',
-    //       content: 'Attention on the Warriors and their likable cast of characters,' +
-    //         'led by MVP sharpshooter Stephen Curry, grew as the victories piled up.' +
-    //         'On the road, fans and media filled arenas wondering ' +
-    //         'if this was the night they would witness the end of the run.'
-    //     })
-    //     .set('x-access-token', token)
-    //     .end(function(err, res) {
-    //       docId = res.body.document._id;
-    //       expect(res.status).toEqual(200);
-    //       expect(res.body.message).toBeDefined();
-    //       expect(res.body.message).toBe('Document successfully created');
-    //       done();
-    //     });
-    // });
-
-    // it('Should return a specific document created by a user', function(done) {
-    //   request
-    //     .get(base_url + '/api/documents/' + docId)
-    //     .set('x-access-token', token)
-    //     .accept('application/json')
-    //     .end(function(err, res) {
-    //       expect(res.status).toEqual(200);
-    //       expect(res.body.title).toBeDefined();
-    //       expect(res.body.content).toBeDefined();
-    //       expect(res.body.title).toEqual('This is a new Docmument being created')
-    //       done();
-    //     });
-    // });
-
-    // it('Should update the fields of the current document being updated', function(done) {
-    //   request
-    //     .put(base_url + '/api/documents/' + docId)
-    //     .set('x-access-token', token)
-    //     .send({
-    //       title: 'This is an old document being updated'
-    //     })
-    //     .accept('application/json')
-    //     .end(function(err, res) {
-    //       expect(res.status).toEqual(200);
-    //       expect(res.body.message).toBeDefined();
-    //       expect(res.body.message).toEqual('Document successfully updated');
-    //       done();
-    //     });
-    // });
-
-    // it('Should delete a specified document that was initially created by a user', function(done) {
-    //   request
-    //     .delete(base_url + '/api/documents/' + docId)
-    //     .set('x-access-token', token)
-    //     .end(function(err, res) {
-    //       expect(res.status).toEqual(200);
-    //       expect(res.body.message).toBe('Document successfully deleted!!');
-    //       done();
-    //     });
-    // });
   });
 }());
