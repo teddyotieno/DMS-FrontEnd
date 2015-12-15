@@ -20,8 +20,6 @@
           document: document
         });
       });
-
-      console.log(res);
     },
 
 // Gets all document resources in the DB
