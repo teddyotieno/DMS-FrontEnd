@@ -1,8 +1,8 @@
-<a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/feed"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/gpa.svg" /></a>
+## DMS
 
-<a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/coverage"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/coverage.svg" /></a>
+<a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/feed"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/gpa.svg" /></a> <a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/coverage"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/coverage.svg" /></a>
 
-# DMS
+
 
 The system manages documents, users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published. Users are categorized by roles. Each user must have a role defined for them.
 
