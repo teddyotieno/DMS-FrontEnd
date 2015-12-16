@@ -1,12 +1,12 @@
 var request = require('superagent');
 var faker = require('faker');
 var base_url = 'http://localhost:3000';
-var userId, docId, token;
+var userId, token;
 
 
 (function() {
-  "use strict";
-  describe("Test Suites for the Roles", function() {
+  'use strict';
+  describe('Test Suites for the Roles', function() {
 
     //Logs in a User before running the tests
     beforeEach(function(done) {
@@ -29,7 +29,8 @@ var userId, docId, token;
       }
     });
 
-    it('Should ensure the user is logged in for it to return all the roles', function(done) {
+    it('Should ensure the user is logged in for it' +
+        ' to return all the roles', function(done) {
       request
         .get(base_url + '/api/roles')
         .accept('application/json')

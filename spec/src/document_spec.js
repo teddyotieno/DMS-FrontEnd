@@ -1,14 +1,11 @@
-var frisby = require('frisby');
 var request = require('superagent');
 var base_url = 'http://localhost:3000';
 var userId, docId, token;
 
 
 (function() {
-  "use strict";
-  describe("Test Suites for the Document", function() {
-
-    //Logs in a User before running the tests
+  'use strict';
+  describe('Test Suites for the Document', function() {
     beforeEach(function(done) {
       if (token) {
         done();
@@ -29,7 +26,7 @@ var userId, docId, token;
       }
     });
 
-    it('Should ensure the user is logged in for it to return all the documents', function(done) {
+    it('Ensure User is authorized to view documents', function(done) {
       request
         .get(base_url + '/api/documents')
         .accept('application/json')
@@ -54,12 +51,12 @@ var userId, docId, token;
         });
     });
 
-    it('Should store a newly created document by the logged in user', function(done) {
+    it('Should create a document by an authorized User', function(done) {
       request
         .post(base_url + '/api/documents', {
           title: 'This is a new Docmument being created',
-          content: 'Attention on the Warriors and their likable cast of characters,' +
-            'led by MVP sharpshooter Stephen Curry, grew as the victories piled up.' +
+          content: 'Attention on the Warriors and their likable cast of' +
+            'led by MVP sharpshooter Stephen Curry, grew as the victories .' +
             'On the road, fans and media filled arenas wondering ' +
             'if this was the night they would witness the end of the run.'
         })
@@ -82,12 +79,13 @@ var userId, docId, token;
           expect(res.status).toEqual(200);
           expect(res.body.title).toBeDefined();
           expect(res.body.content).toBeDefined();
-          expect(res.body.title).toEqual('This is a new Docmument being created')
+          expect(res.body.title)
+            .toEqual('This is a new Docmument being created');
           done();
         });
     });
 
-    it('Should update the fields of the current document being updated', function(done) {
+    it('Should update a document', function(done) {
       request
         .put(base_url + '/api/documents/' + docId)
         .set('x-access-token', token)
@@ -103,7 +101,7 @@ var userId, docId, token;
         });
     });
 
-    it('Should delete a specified document that was initially created by a user', function(done) {
+    it('Should validate that a document can be deleted', function(done) {
       request
         .delete(base_url + '/api/documents/' + docId)
         .set('x-access-token', token)

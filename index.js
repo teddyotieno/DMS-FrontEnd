@@ -4,7 +4,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var port = 3000;
-var db = require('./server/config/db');
+
 
 
 require('./seeds/seed');
@@ -22,7 +22,10 @@ app.use(morgan('dev'));
 
 //Basic Route for the Homepage to our API
 app.get('/', function(req, res) {
-  res.send('Welcome to the homepage of our Document Management System API');
+  res.json({
+    success: 'true',
+    message: 'Welcome to the Homepage of our Document Management System API'
+  });
 });
 
 

@@ -4,9 +4,9 @@
 
   module.exports = {
 
-// Creates a document
+    // Creates a document
     createDocument: function(req, res) {
-      var document = new Document;
+      var document = new Document();
       document.title = req.body.title;
       document.content = req.body.content;
       document.ownerId = req.body.ownerId;
@@ -22,7 +22,7 @@
       });
     },
 
-// Gets all document resources in the DB
+    // Gets all document resources in the DB
     getAllDocuments: function(req, res) {
       Document.find(function(err, documents) {
         if (err) {
@@ -44,12 +44,14 @@
       });
     },
 
-// Returns all the documents of the same role
+    // Returns all the documents of the same role
     getAllByRole: function(req, res) {
-      Document.find({role: req.params.rold_id})
+      Document.find({
+          role: req.params.rold_id
+        })
         .populate('role')
         .exec(function(err, docs) {
-          if(err) {
+          if (err) {
             return err;
           } else {
             return res.status(200).json({
@@ -59,7 +61,29 @@
         });
     },
 
-// Updates a specified document created by the user
+    // Returns all documents based on a Date filter
+    getAllDocumentsByDate: function(req, res) {
+      var day = new Date(Date.parse(req.params.date)).getDate();
+      var month = new Date(Date.parse(req.params.date)).getMonth();
+      var year = new Date(Date.parse(req.params.date)).getFullYear();
+      // console.log('Year', year);
+      // console.log('Month', month);
+      // console.log('Day', day);
+      var birthday = new Date(1993, 0, 7);
+      console.log(birthday);
+      // Document.find(dateCreated)
+      //   .exec(functi,on(err, documents) {
+      //     if(err) {
+      //       res.send(err);
+      //     } else {
+      //       return res.status(200).json({
+      //         documents: documents
+      //       });
+      //     }
+      //   })
+    },
+
+    // Updates a specified document created by the user
     update: function(req, res) {
       Document.findById(req.params.doc_id, function(err, document) {
         if (err) {
@@ -86,11 +110,11 @@
       });
     },
 
-// Deletes a specified document by the User who created it
+    // Deletes a specified document by the User who created it
     delete: function(req, res) {
       Document.remove({
         _id: req.params.doc_id
-      }, function(err, document) {
+      }, function(err) {
         if (err) {
           res.send(err);
         }

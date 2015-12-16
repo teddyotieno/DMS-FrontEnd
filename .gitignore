@@ -9,7 +9,6 @@ logs
 pids
 *.pid
 *.seed
-.env
 tmp/
 public/
 node_modules

@@ -36,7 +36,7 @@
     logout: function(req, res) {
       delete req.headers['x-access-token'];
       return res.status(200).json({
-        'message': 'User has been successfully logged out'
+        message: 'User has been successfully logged out'
       });
     },
 

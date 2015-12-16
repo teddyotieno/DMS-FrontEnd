@@ -1,11 +1,24 @@
-var frisby = require('frisby');
+var request = require('superagent');
+var base_url = 'http://localhost:3000';
 
 (function() {
-  "use strict";
-  describe('Document Management System API Home Route', function() {
-    frisby.create('Return Status Code of 200')
-      .get('http://localhost:3000')
-      .expectStatus(200)
-      .toss()
+  'use strict';
+  describe('Test Suite for the Home Route', function() {
+    it('Should validate the home route for DMS API is working', function(done) {
+      request
+        .get(base_url)
+        .end(function(err, res) {
+          expect(res.status).toEqual(200);
+          expect(res.body.success).toBeDefined();
+          expect(res.body.message)
+            .toBe('Welcome to the homepage of our ' +
+              'Document Management System API');
+          done();
+        });
+    });
   });
 }());
+
+
+
+
