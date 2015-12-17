@@ -11,7 +11,7 @@ var base_url = 'http://localhost:3000';
           expect(res.status).toEqual(200);
           expect(res.body.success).toBeDefined();
           expect(res.body.message)
-            .toBe('Welcome to the homepage of our ' +
+            .toBe('Welcome to the Homepage of our ' +
               'Document Management System API');
           done();
         });

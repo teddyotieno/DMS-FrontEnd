@@ -15,6 +15,7 @@
       user.username = req.body.username;
       user.password = req.body.password;
       user.email = req.body.email;
+      user.title = req.body.title;
 
       user.save(function(err) {
         if (err) {
@@ -41,7 +42,7 @@
     },
 
     // Logs In a User by verifying his username and password
-    login: function(req, res, next) {
+    login: function(req, res) {
       // Find the User
       // Select the name and password explicitly
       User.findOne({
@@ -155,12 +156,11 @@
       });
     },
 
-
     // Deletes the User
     delete: function(req, res) {
       User.remove({
         _id: req.params.user_id
-      }, function(err, user) {
+      }, function(err) {
         if (err) {
           res.send(err);
         }

@@ -20,12 +20,11 @@ var UserSchema = new Schema({
       unique: true
     }
   },
-
  title: {
-    type: Schema.Types.ObjectId,
+    type: String,
+    required: true,
     ref: 'Role'
   },
-
   password: {
     type: String,
     required: true
@@ -50,7 +49,6 @@ UserSchema.pre('save', function(next) {
     next();
   });
 });
-
 
 // Method to compare the compare password with the database password
 UserSchema.methods.comparePassword = function(password) {

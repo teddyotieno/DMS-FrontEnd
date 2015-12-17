@@ -5,8 +5,6 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var port = 3000;
 
-
-
 require('./seeds/seed');
 
 

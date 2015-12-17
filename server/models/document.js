@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var DocumentSchema = new Schema({
   ownerId: {
     type: Schema.Types.ObjectId,
+    // required: true,
     ref: 'User'
   },
   role: {

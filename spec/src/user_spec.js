@@ -3,7 +3,6 @@ var request = require('superagent');
 var base_url = 'http://localhost:3000';
 var userId, token;
 
-
 (function() {
   'use strict';
   describe('Test suites for the User Resource', function() {
@@ -29,7 +28,8 @@ var userId, token;
             secondname: faker.name.findName(),
             username: faker.name.findName(),
             password: faker.name.findName(),
-            email: faker.internet.email()
+            email: faker.internet.email(),
+            title: 'Public'
           })
           .accept('application/json')
           .end(function(err, res) {
@@ -89,7 +89,6 @@ var userId, token;
           });
       });
 
-
     it('Should return the document(s) ' +
       'created by a specified User',
       function(done) {
@@ -138,7 +137,6 @@ var userId, token;
           });
       });
 
-
     it('Should return that the user has been ' +
       'successfully deleted',
       function(done) {
@@ -152,5 +150,4 @@ var userId, token;
           });
       });
   });
-
 }());

@@ -10,7 +10,6 @@
       document.title = req.body.title;
       document.content = req.body.content;
       document.ownerId = req.body.ownerId;
-
       document.save(function(err) {
         if (err) {
           return res.send(err);
@@ -61,52 +60,36 @@
         });
     },
 
-    // Returns all documents based on a Date filter
-    getAllDocumentsByDate: function(req, res) {
-      var day = new Date(Date.parse(req.params.date)).getDate();
-      var month = new Date(Date.parse(req.params.date)).getMonth();
-      var year = new Date(Date.parse(req.params.date)).getFullYear();
-      // console.log('Year', year);
-      // console.log('Month', month);
-      // console.log('Day', day);
-      var birthday = new Date(1993, 0, 7);
-      console.log(birthday);
-      // Document.find(dateCreated)
-      //   .exec(functi,on(err, documents) {
-      //     if(err) {
-      //       res.send(err);
-      //     } else {
-      //       return res.status(200).json({
-      //         documents: documents
-      //       });
-      //     }
-      //   })
-    },
-
     // Updates a specified document created by the user
     update: function(req, res) {
       Document.findById(req.params.doc_id, function(err, document) {
         if (err) {
           res.send(err);
-        }
+        } else if (req.decoded._id === document.ownerId ||
+          req.decoded.title === 'Admin') {
 
-        // Update the Document Information only if its new
-        if (req.body.title) {
-          document.title = req.body.title;
-        }
-        if (req.body.content) {
-          document.content = req.body.content;
-        }
-
-        // Save the Document
-        document.save(function(err) {
-          if (err) {
-            res.send(err);
+          // Update the Document Information only if its new
+          if (req.body.title) {
+            document.title = req.body.title;
           }
-          res.json({
-            message: 'Document successfully updated'
+          if (req.body.content) {
+            document.content = req.body.content;
+          }
+
+          // Save the Document
+          document.save(function(err) {
+            if (err) {
+              res.send(err);
+            }
+            res.json({
+              message: 'Document successfully updated'
+            });
           });
-        });
+        }
+        else {
+          res.json({success: false,
+            message: 'You can only update a document you have created'});
+        }
       });
     },
 
@@ -114,14 +97,44 @@
     delete: function(req, res) {
       Document.remove({
         _id: req.params.doc_id
-      }, function(err) {
+      }, function(err, document) {
         if (err) {
           res.send(err);
         }
-        res.json({
-          message: 'Document successfully deleted!!'
-        });
+        if (req.decoded._id === document.ownerId ||
+          req.decoded.title === 'Admin') {
+          res.json({
+            message: 'Document successfully deleted!!'
+          });
+        } else {
+          res.json({
+            success: false,
+            message: 'You can only delete a document you have created'
+          });
+        }
       });
+    },
+
+    //Delete all documents based on Role of User
+    deleteAllDocuments: function(req, res) {
+      if (req.decoded.title === 'Admin') {
+        Document.remove({}, function(err) {
+          if (err) {
+            res.send(err);
+          } else {
+            res.json({
+              success: true,
+              message: 'All Documents successfully deleted'
+            });
+          }
+        });
+      } else {
+        res.json({
+          success: false,
+          message: 'You need to have Admin priviledges to delete all documents'
+        });
+      }
+      console.log(res.status);
     }
   };
 }());

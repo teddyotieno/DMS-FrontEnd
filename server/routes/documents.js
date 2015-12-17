@@ -14,14 +14,12 @@ module.exports = function(app, express) {
     .delete(Documents.delete);
 
 
-
   // Documents Routes
   apiRouter.route('/documents')
     .post(Documents.createDocument)
-    .get(Documents.getAllDocuments);
+    .get(Documents.getAllDocuments)
+    .delete(Documents.deleteAllDocuments);
 
-  apiRouter.route('/documents/date/:date')
-    .get(Documents.getAllDocumentsByDate);
 
   apiRouter.route('/documents/:role_id')
     .get(Documents.getAllByRole);

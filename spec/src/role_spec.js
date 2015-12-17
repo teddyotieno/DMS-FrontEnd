@@ -3,7 +3,6 @@ var faker = require('faker');
 var base_url = 'http://localhost:3000';
 var userId, token;
 
-
 (function() {
   'use strict';
   describe('Test Suites for the Roles', function() {
@@ -55,7 +54,6 @@ var userId, token;
         });
     });
 
-
     it('Should create a new unique role', function(done) {
       request
         .post(base_url + '/api/roles', {
@@ -69,7 +67,6 @@ var userId, token;
           done();
         });
     });
-
 
     it('Should update the title role of the current user', function(done) {
       request
