@@ -36,7 +36,7 @@
     updateRole: function(req, res) {
       Role.findByIdAndUpdate(req.params.id, {
         role: req.body.title
-      }).exec(function(err, role) {
+      }).exec(function(err) {
         if(err) {
           res.send(err);
         }

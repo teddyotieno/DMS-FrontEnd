@@ -7,7 +7,6 @@ var port = 3000;
 
 require('./seeds/seed');
 
-
 // Use bodyparser so that we can grab infromation from POST requests
 app.use(bodyParser.urlencoded({
   extended: true
@@ -17,7 +16,6 @@ app.use(bodyParser.json());
 // Log all requests to the console
 app.use(morgan('dev'));
 
-
 //Basic Route for the Homepage to our API
 app.get('/', function(req, res) {
   res.json({
@@ -26,18 +24,14 @@ app.get('/', function(req, res) {
   });
 });
 
-
 // Configure our routes
 require('./server/routes/users')(app, express);
 require('./server/routes/documents')(app, express);
 require('./server/routes/roles')(app, express);
 
-
-
 // Start the Server
 app.listen(port);
 console.log('Magic happening at port ' + port);
-
 
 // Expose App
 exports = module.exports = app;
