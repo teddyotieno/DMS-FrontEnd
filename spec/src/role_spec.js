@@ -34,7 +34,7 @@ var userId, token;
         .get(base_url + '/api/roles')
         .accept('application/json')
         .end(function(err, res) {
-          expect(res.status).toEqual(403);
+          expect(res.status).toEqual(401);
           expect(res.body.message).toEqual('Failed to provide token');
           expect(res.body.success).toEqual(false);
           done();
@@ -64,6 +64,22 @@ var userId, token;
         .end(function(err, res) {
           expect(res.status).toEqual(200);
           expect(res.body.message).toBe('Role successfully created');
+          done();
+        });
+    });
+
+    it('Should assert that a role cannot ' +
+      'be duplicated and has to be unique', function(done) {
+      request
+        .post(base_url + '/api/roles', {
+          title: 'Admin'
+        })
+        .set('x-access-token', token)
+        .accept('application/json')
+        .end(function(err, res) {
+          expect(res.status).toEqual(500);
+          expect(res.body.success).toBe(false);
+          expect(res.body.message).toBe('A role of that name already exists');
           done();
         });
     });

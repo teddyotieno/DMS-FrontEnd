@@ -74,9 +74,8 @@ seeder.connect(db.url, function() {
     '../DMS/server/models/role.js'
   ]);
 
-  // Clear specified collections
+  // Clear speerreerrrrrcified collections
   seeder.clearModels(['Role', 'User', 'Document'], function() {
-
     // Callback to populate DB once collections have been cleared
     seeder.populateModels(data);
 

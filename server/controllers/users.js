@@ -20,17 +20,19 @@
       user.save(function(err) {
         if (err) {
           if (err.code === 1000) {
-            return res.json({
+            console.log(res.status);
+            return res.status(500).json({
               message: 'A user with that name already exists'
             });
           } else {
-            return res.send(err);
+            return res.status(500).send(err);
           }
         }
         res.json({
           message: 'User successfully created'
         });
       });
+
     },
 
     // Logout a User and deletes the assigned token

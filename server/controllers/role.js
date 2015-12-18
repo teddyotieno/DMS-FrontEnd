@@ -10,7 +10,8 @@
 
       role.save(function(err) {
         if (err) {
-          res.send(err);
+          res.status(500).json({success: false, message: 'A role of that ' +
+            'name already exists'});
         } else {
           res.json({
             message: 'Role successfully created'

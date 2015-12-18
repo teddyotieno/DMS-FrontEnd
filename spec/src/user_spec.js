@@ -57,6 +57,26 @@ var userId, token;
         });
     });
 
+    it('Should assert that a user has to be unique', function(done) {
+      request
+        .post(base_url + '/api/users', {
+          firstname: 'Donald',
+          secondname: 'Okwenda',
+          username: 'Don',
+          password: 'password',
+          email: 'don@gmail.com',
+          title: 'Admin'
+        })
+        .accept('application/json')
+        .end(function(err, res) {
+          expect(res.body.code).toEqual(11000);
+          expect(res.status).toBe(500);
+          expect(res.body.errmsg).toBe('E11000 duplicate key error ' +
+            'index: dms.users.$username_1 dup key: { : \"Don\" }');
+          done();
+        });
+    });
+
     it('Should return the specified user', function() {
       request
         .get(base_url + '/api/users/' + userId)

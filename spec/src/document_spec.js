@@ -11,7 +11,7 @@ var docId1, docId2;
         .get(base_url + '/api/documents')
         .accept('application/json')
         .end(function(err, res) {
-          expect(res.status).toEqual(403);
+          expect(res.status).toEqual(401);
           expect(res.body.message).toEqual('Failed to provide token');
           expect(res.body.success).toEqual(false);
           done();
@@ -152,7 +152,7 @@ var docId1, docId2;
             .delete(base_url + '/api/documents/' + docId1)
             .set('x-access-token', token)
             .end(function(err, res) {
-              expect(res.status).toEqual(200);
+              expect(res.status).toEqual(403);
               expect(res.body.message).toBe('You can only delete a ' +
                 'document you have created');
               done();
@@ -169,7 +169,7 @@ var docId1, docId2;
             .delete(base_url + '/api/documents')
             .set('x-access-token', token)
             .end(function(err, res) {
-              expect(res.status).toEqual(200);
+              expect(res.status).toEqual(403);
               expect(res.body.success).toBe(false);
               expect(res.body.message).toBe('You need to have Admin ' +
                 'priviledges to delete all documents');

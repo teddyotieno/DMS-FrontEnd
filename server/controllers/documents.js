@@ -99,7 +99,7 @@
         _id: req.params.doc_id
       }, function(err, document) {
         if (err) {
-          res.send(err);
+          res.status(403).send(err);
         }
         if (req.decoded._id === document.ownerId ||
           req.decoded.title === 'Admin') {
@@ -107,7 +107,7 @@
             message: 'Document successfully deleted!!'
           });
         } else {
-          res.json({
+          res.status(403).json({
             success: false,
             message: 'You can only delete a document you have created'
           });
@@ -129,7 +129,7 @@
           }
         });
       } else {
-        res.json({
+        res.status(403).json({
           success: false,
           message: 'You need to have Admin priviledges to delete all documents'
         });
