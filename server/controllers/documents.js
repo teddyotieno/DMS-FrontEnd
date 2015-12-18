@@ -134,7 +134,6 @@
           message: 'You need to have Admin priviledges to delete all documents'
         });
       }
-      console.log(res.status);
     }
   };
 }());
