@@ -1,4 +1,4 @@
 angular.module('dms.controllers')
-  .controller('HomeCtrl', ['$scope', function($scope){
+  .controller('WelcomeCtrl', ['$scope', function($scope){
     $scope.message = 'Welcome to the Home Page of our app';
   }]);

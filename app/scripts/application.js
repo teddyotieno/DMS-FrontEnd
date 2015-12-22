@@ -4,10 +4,10 @@
   angular.module('dms.services', []);
 
   // Require Controllers
-  require('./controllers/home');
+  require('./controllers/welcome');
+  require('./controllers/signup');
 
   // Require Services
-
 
 
 
@@ -46,7 +46,7 @@
       $stateProvider
         .state('home', {
           url: '/',
-          controller: 'HomeCtrl',
+          controller: 'WelcomeCtrl',
           templateUrl: 'views/home.html'
         })
         .state('about', {

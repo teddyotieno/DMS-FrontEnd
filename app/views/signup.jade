@@ -1,1 +1,32 @@
-p This is the SignUp Page
+.signup-image-holder
+  .signup-form
+    md-content(layout-padding='')
+        div
+          form(name='userForm')
+            div(layout-gt-sm='row')
+              md-input-container.md-block(flex-gt-sm='')
+                label First name
+                input(ng-model='user.firstName')
+              md-input-container.md-block(flex-gt-sm='')
+                label Last Name
+                input(ng-model='user.lastName')
+            md-input-container.md-block(style='margin-top: -20px;')
+              label Username
+              input(ng-model='user.username')
+            md-input-container.md-block(style='margin-top: -20px;')
+              label E-mail
+              input(ng-model='user.email')
+            md-input-container.md-block(flex-gt-sm='', style='margin-top: -20px')
+              label Role
+              md-select(ng-model='user.state')
+              md-option(ng-repeat='state in states', value='{{state.abbrev}}')
+                | {{state.abbrev}}
+            md-input-container.md-block(style='margin-top: -20px;')
+                label Password
+                input(ng-model='user.password')
+            md-button.md-raised(aria-label='Submit')
+              | Submit
+
+
+
+
