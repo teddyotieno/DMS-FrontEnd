@@ -6,7 +6,9 @@
             div(layout='row')
               md-input-container.md-block(flex-gt-sm='')
                 label First name
-                input(ng-model='user.firstName')
+                input(required='',ng-model='user.firstName')
+                div(ng-messages='userForm.firstName.$error')
+                  div(ng-message='required') This is required.
               md-input-container.md-block(flex-gt-sm='')
                 label Last Name
                 input(ng-model='user.secondName')
@@ -30,7 +32,4 @@
             md-button.md-raised(aria-label='Submit' type='submit')
               | Submit
 
-
-
-
-
+p Add

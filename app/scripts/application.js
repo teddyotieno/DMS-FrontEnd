@@ -20,6 +20,7 @@
     'ngRoute',
     'ui.router',
     'ngResource',
+    'ngMessages',
     'ngMaterial',
   ]);
 
