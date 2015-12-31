@@ -8,6 +8,9 @@
   require('./controllers/signup');
 
   // Require Services
+  require('./services/auth');
+  require('./services/token');
+  require('./services/user');
 
 
 
@@ -16,6 +19,7 @@
     'dms.services',
     'ngRoute',
     'ui.router',
+    'ngResource',
     'ngMaterial',
   ]);
 
