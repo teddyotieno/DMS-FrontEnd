@@ -22,6 +22,7 @@ body {
             }
             .md-button:hover {
                 background-color: rgb(255, 255, 255);
+                color: rgb(109, 117, 120);
             }
         }
     }
@@ -69,21 +70,29 @@ body {
     height: 1000px;
     background: url('../images/background-photo-signup.jpg');
     md-content {
-      width: 350px;
-      padding: 20px;
-      border-radius: 12px;
-    };
-    .signup-form {
-      padding: 110px 70px;
-      md-content {
-        div {
-          form {
-            .md-button {
-              margin-left: 250px;
-            }
-          }
-        }
-      }
+        width: 350px;
+        padding: 20px;
+        border-radius: 12px;
     }
-
+    ;
+    .signup-form {
+        padding: 110px 70px;
+        md-content {
+            div {
+                form {
+                    .md-button {
+                        margin-left: 250px;
+                        border: 1px solid yellow;
+                        background: rgb(109, 117, 120);
+                        color: rgb(255, 255, 255);
+                    }
+                    .md-button:hover {
+                        background-color: rgb(255, 255, 255);
+                        color: rgb(109, 117, 120);
+                        border: 1px solid rgb(218, 218, 218);
+                    }
+                }
+            }
+        }
+    }
 }
