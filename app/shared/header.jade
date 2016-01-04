@@ -14,4 +14,20 @@
       md-menu
         md-button.md-raised(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
           | Log In
-        md-menu-content(width='6')
+        md-menu-content(width='5' style='color:black')
+          form(name='loginForm' class='loginForm')
+            h3 Sign In
+            md-input-container
+              label Username
+              input(required ng-model='user.username')
+            md-input-container
+              label Password
+              input(required ng-model='user.password')
+            div
+              md-button.md-raised(aria-label='Sign In' type='submit')
+                | Sign In
+
+
+
+
+
