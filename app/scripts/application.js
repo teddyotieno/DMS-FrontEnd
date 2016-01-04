@@ -7,6 +7,7 @@
   require('./controllers/welcome');
   require('./controllers/signup');
   require('./controllers/header');
+  require('./controllers/document');
 
   // Require Services
   require('./services/auth');
