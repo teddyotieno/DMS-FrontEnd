@@ -24,7 +24,8 @@
               label Password
               input(required ng-model='user.password')
             div
-              md-button.md-raised(aria-label='Sign In' type='submit')
+              p(ng-model='messageLogin')
+              md-button.md-raised(aria-label='Sign In' ng-click='login()')
                 | Sign In
 
 
