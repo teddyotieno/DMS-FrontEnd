@@ -1,4 +1,4 @@
-.header
+.header(ng-controller='HeaderCtrl')
   md-toolbar
     .md-toolbar-tools
       span(flex)
@@ -11,5 +11,24 @@
       span(flex)
       md-button.md-raised(aria-label='Sign Up' ui-sref='signup')
         | Sign Up
-      md-button.md-raised(aria-label='Log In')
-        | Log In
+      md-menu
+        md-button.md-raised(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
+          | Log In
+        md-menu-content(width='5' style='color:black')
+          form(name='loginForm' class='loginForm')
+            h3 Sign In
+            md-input-container
+              label Username
+              input(required ng-model='user.username')
+            md-input-container
+              label Password
+              input(required ng-model='user.password')
+            div
+              p(ng-model='messageLogin')
+              md-button.md-raised(aria-label='Sign In' ng-click='login()')
+                | Sign In
+
+
+
+
+
