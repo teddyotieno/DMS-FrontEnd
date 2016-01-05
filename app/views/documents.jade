@@ -1,5 +1,9 @@
 .documentContainer(layout='row')
-  .documentChild70(flex='70') First Item
+  .documentChild70(flex='70')
+    md-button.md-icon-button.md-accent(aria-label='Create Document')
+      md-icon
+        i(class='fa fa-plus fa-2x')
+
   .documentChild30(flex='30')
     md-content
       md-list
@@ -7,7 +11,7 @@
         md-list-item(ng-repeat='document in documents')
           md-card
             md-card-title-text
-              span.md-headline {{documennt.title}}
+              h3.md-padding {{document.title}}
             md-card-content
               p {{document.content}}
 
