@@ -13,6 +13,8 @@
   require('./services/auth');
   require('./services/token');
   require('./services/user');
+  require('./services/document');
+  require('./services/token-injector');
 
 
 
@@ -46,6 +48,8 @@
     '$urlRouterProvider', '$locationProvider',
     function($stateProvider, $httpProvider, $urlRouterProvider,
       $locationProvider) {
+
+       $httpProvider.interceptors.push('TokenInjector');
 
       // For any unmatched url, redirect to /state1
       $urlRouterProvider.otherwise('/404');
