@@ -1,1 +1,17 @@
-p This is the document page
+.documentContainer(layout='row')
+  .documentChild70(flex='70') First Item
+  .documentChild30(flex='30')
+    md-content
+      md-list
+        md-subheader.md-no-sticky Recent Documents
+        md-list-item(ng-repeat='document in documents')
+          md-card
+            md-card-title-text
+              span.md-headline {{documennt.title}}
+            md-card-content
+              p {{document.content}}
+
+
+
+
+
