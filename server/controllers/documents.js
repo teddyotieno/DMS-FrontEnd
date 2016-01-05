@@ -27,9 +27,7 @@
         if (err) {
           res.send(err);
         }
-        res.json({
-          documents: documents
-        });
+        res.json(documents);
       });
     },
 
