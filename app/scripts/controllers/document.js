@@ -1,4 +1,6 @@
 angular.module('dms.controllers')
-  .controller('DocumentsCtrl', ['$scope', function($scope){
-    $scope.message = 'Welcome to the Home Page of our app';
+  .controller('DocumentsCtrl', ['$scope', 'Documents', function($scope, Documents) {
+    $scope.documents = Documents.query();
+    console.log($scope.documents);
+
   }]);
