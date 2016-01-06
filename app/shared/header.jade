@@ -2,11 +2,13 @@
   md-toolbar
     .md-toolbar-tools
       span(flex)
-      md-button.md-raised(aria-label='Sign Up' ui-sref='signup')
+      md-button.md-raised(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
         | Sign Up
-      md-menu
+      md-button.md-raised(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
+        | Log Out
+      md-menu(ng-if='!currentUser')
         md-button.md-raised(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
-          | Log In
+          a Log In
         md-menu-content(width='5' style='color:black')
           form(name='loginForm' class='loginForm')
             h3 Sign In
