@@ -9,7 +9,7 @@
       var document = new Document();
       document.title = req.body.title;
       document.content = req.body.content;
-      document.ownerId = req.body.ownerId;
+      document.owner = req.decoded._id;
       document.save(function(err) {
         if (err) {
           return res.send(err);
@@ -27,9 +27,7 @@
         if (err) {
           res.send(err);
         }
-        res.json({
-          documents: documents
-        });
+        res.json(documents);
       });
     },
 

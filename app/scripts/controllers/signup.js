@@ -27,6 +27,7 @@ angular.module('dms.controllers')
                     Users.save(user, function(res) {
                         Auth.setToken(res.token);
                         $rootScope.currentUser = res;
+                        console.log(res);
                         console.log('$rootScope.currentUser: ', $rootScope.currentUser);
                         $state.go('documents', {
                             id: $rootScope.currentUser.id

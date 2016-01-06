@@ -1,1 +1,20 @@
-p This is the document page
+.documentContainer(layout='row')
+  .documentChild70(flex='70')
+    md-button.md-icon-button.md-primary(aria-label='Create Document' ng-click='openOffscreen($event)')
+      md-icon
+        i(class='fa fa-plus fa-2x')
+  .documentChild30(flex='30')
+    md-content
+      md-list
+        md-subheader.md-no-sticky Recent Documents
+        md-list-item(ng-repeat='document in documents')
+          md-card
+            md-card-title-text
+              h3.md-padding {{document.title}}
+            md-card-content
+              p {{document.content}}
+
+
+
+
+

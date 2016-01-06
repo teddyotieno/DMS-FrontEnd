@@ -20,7 +20,7 @@ module.exports = function(app, express) {
 
   // Logout route
   apiRouter.route('/users/logout')
-    .post(Users.logout);
+    .get(Users.logout);
 
   // User Routes
   apiRouter.route('/users/:id')

@@ -19,5 +19,13 @@ angular.module('dms.services')
             });
         };
 
+        obj.logout = function(cb) {
+            $http.get('/api/users/logout').success(function(res) {
+                cb(null, res);
+            }).error(function(err) {
+                cb(err);
+            });
+        };
+
         return obj;
     }]);
