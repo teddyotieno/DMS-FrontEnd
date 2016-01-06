@@ -99,23 +99,48 @@ body {
 
 // Styles for Login Service
 .loginForm {
-  padding: 20px;
-  h3 {
-    margin: 0px;
-  }
+    padding: 20px;
+    h3 {
+        margin: 0px;
+    }
 }
 
 // Styles for Document Page
 .documentContainer {
-  .documentChild30 {
-    border-left: solid 1px rgb(218, 218, 218);
-    h3 {
-      margin: 0px;
-      padding-bottom: 0px;
+    .documentChild30 {
+        border-left: solid 1px rgb(218, 218, 218);
+        h3 {
+            margin: 0px;
+            padding-bottom: 0px;
+        }
+        p {
+            margin-top: 0px;
+        }
+        md-card {
+          width: 100%;
+        }
     }
-    p {
-      margin-top: 0px;
-    }
+}
 
-  }
+.documentFormContainer {
+    form {
+        min-height: 450px;
+        min-width: 500px;
+        md-input {
+            border-color: transparent;
+        }
+        .textAreaContainer {
+            border-color: transparent;
+            textarea {
+                border-color: transparent;
+            }
+            textarea:focus {
+              border-color: transparent;
+            }
+        }
+        button {
+          margin-top: 240px;
+          margin-left: 400px;
+        }
+    }
 }
