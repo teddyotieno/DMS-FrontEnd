@@ -22,8 +22,6 @@ var gulp = require('gulp'),
     styles: 'app/styles/*.+(less|css)'
   };
 
-
-
 gulp.task('default', function() {
   console.log('Everything is working out okay');
 });
@@ -96,7 +94,6 @@ gulp.task('browserify', function() {
     // Output the file
     .pipe(gulp.dest('./public/js/'));
 });
-
 
 
 gulp.task('watch', function() {
