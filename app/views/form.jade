@@ -1,0 +1,10 @@
+.documentFormContainer
+  form(name='documentForm' ng-submit='createDoc()').md-padding
+    md-input-container.md-block
+      label Title
+      input(required type='text', ng-model='document.title')
+    md-input-container.md-block(class='textAreaContainer')
+      label Type out your document...
+      textarea(type='text' ng-model='document.content')
+    md-button.md-raised(aria-label='Create' type='submit')
+      | Create
