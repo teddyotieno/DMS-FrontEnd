@@ -8,6 +8,7 @@
   require('./controllers/signup');
   require('./controllers/header');
   require('./controllers/document');
+  require('./controllers/form');
 
   // Require Services
   require('./services/auth');
