@@ -1,20 +1,15 @@
 angular.module('dms.controllers')
-    .controller('DocumentsCtrl', ['$scope', 'Documents',  '$mdDialog', 'Users', function($scope, Documents, $mdDialog) {
+    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', function($scope, Documents, $mdDialog) {
         $scope.documents = Documents.query();
 
         $scope.openOffscreen = function(ev) {
             $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: '../views/form.html',
-                    parent: angular.element(document.body),
-                    targetEvent: ev,
-                    clickOutsideToClose: true
-                })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+                controller: DialogController,
+                templateUrl: '../views/form.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: false
+            });
         };
 
         function DialogController($scope, $mdDialog) {

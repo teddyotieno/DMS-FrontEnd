@@ -1,4 +1,4 @@
-.documentContainer(layout='row')
+.documentContainer(layout='row' ng-if='currentUser')
   .documentChild70(flex='70')
     md-button.md-icon-button.md-primary(aria-label='Create Document' ng-click='openOffscreen($event)')
       md-icon
