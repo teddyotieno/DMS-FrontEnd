@@ -11,7 +11,6 @@ angular.module('dms.controllers')
                         user.firstName = res.user.name.first;
                         user.username = res.user.username;
                         $rootScope.currentUser = $scope.user;
-                        console.log($scope.user);
                         $state.go('documents');
                     } else {
                         $scope.messageLogin = err.error ||
