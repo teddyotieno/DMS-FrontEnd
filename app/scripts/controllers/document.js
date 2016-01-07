@@ -1,5 +1,5 @@
 angular.module('dms.controllers')
-    .controller('DocumentsCtrl', ['$scope', 'Documents',  '$mdDialog', 'Users', function($scope, Documents, $mdDialog) {
+    .controller('DocumentsCtrl', ['$scope', 'Documents',  '$mdDialog', 'Users', '$rootScope', function($scope, Documents, $mdDialog, $rootScope) {
         $scope.documents = Documents.query();
 
         $scope.openOffscreen = function(ev) {
