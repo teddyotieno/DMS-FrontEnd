@@ -1,7 +1,7 @@
 angular.module('dms.controllers')
     .controller('HeaderCtrl', ['$scope', '$rootScope', '$state',
         '$window', 'Users', 'Auth',
-        function($rootScope, $scope, $state, $window, Users, Auth) {
+        function($scope, $rootScope, $state, $window, Users, Auth) {
             $scope.user = {};
             $scope.login = function() {
                 Users.login($scope.user, function(err, res) {
@@ -10,7 +10,8 @@ angular.module('dms.controllers')
                         var user = {};
                         user.firstName = res.user.name.first;
                         user.username = res.user.username;
-                        $rootScope.currentUser = user;
+                        $rootScope.currentUser = $scope.user;
+                        console.log($scope.user);
                         $state.go('documents');
                     } else {
                         $scope.messageLogin = err.error ||
