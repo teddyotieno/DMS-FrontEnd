@@ -9,7 +9,9 @@
       var document = new Document();
       document.title = req.body.title;
       document.content = req.body.content;
-      document.owner = req.decoded._id;
+      document.ownerId = req.decoded._id;
+      document.owner = req.decoded.name.first;
+      console.log(req.decoded);
       document.save(function(err) {
         if (err) {
           return res.send(err);
