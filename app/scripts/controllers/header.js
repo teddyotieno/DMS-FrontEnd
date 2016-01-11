@@ -10,7 +10,7 @@ angular.module('dms.controllers')
                         var user = {};
                         user.firstName = res.user.name.first;
                         user.username = res.user.username;
-                        $rootScope.currentUser = $scope.user;
+                        $rootScope.currentUser = res.user;
                         $state.go('documents');
                     } else {
                         $scope.messageLogin = err.error ||
