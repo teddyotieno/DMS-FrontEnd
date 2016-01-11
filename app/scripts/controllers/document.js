@@ -1,7 +1,16 @@
 angular.module('dms.controllers')
-    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', function($scope, Documents, $mdDialog) {
-        $scope.documents = Documents.query();
-
+    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', function($scope, Documents, $mdDialog, Users, $rootScope) {
+        $scope.allDocuments = Documents.query();
+        $scope.userDocuments = function() {
+            Users.userDocuments($rootScope.currentUser, function(err, res) {
+                if (err) {
+                    $scope.message = 'No documents have been created';
+                } else {
+                  console.log(res);
+                }
+            });
+        };
+        $scope.userDocuments();
         $scope.openOffscreen = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -10,6 +19,8 @@ angular.module('dms.controllers')
                 targetEvent: ev,
                 clickOutsideToClose: false
             });
+
+
         };
 
         function DialogController($scope, $mdDialog) {
@@ -23,5 +34,7 @@ angular.module('dms.controllers')
                 $mdDialog.hide(answer);
             };
         }
+
+
 
     }]);
