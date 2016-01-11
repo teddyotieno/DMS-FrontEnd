@@ -2,10 +2,14 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var DocumentSchema = new Schema({
-  owner: {
+  ownerId: {
     type: Schema.Types.ObjectId,
     required: true,
     ref: 'User'
+  },
+  owner: {
+    type: String,
+    required: true
   },
   role: {
     type: Schema.Types.ObjectId,
