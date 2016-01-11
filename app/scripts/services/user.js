@@ -27,5 +27,14 @@ angular.module('dms.services')
             });
         };
 
+        obj.userDocuments = function(user, cb) {
+            $http.get('/api/users/' + user._id + '/documents')
+                .success(function(res) {
+                    cb(null, res);
+                }).error(function(err) {
+                    cb(err);
+                });
+        };
+
         return obj;
     }]);
