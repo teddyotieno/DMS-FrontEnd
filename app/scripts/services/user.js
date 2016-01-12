@@ -27,6 +27,14 @@ angular.module('dms.services')
             });
         };
 
+        obj.session = function(cb) {
+            $http.get('/api/users/session').success(function(res) {
+                cb(null, res);
+            }).error(function(err) {
+                cb(err);
+            });
+        };
+
         obj.userDocuments = function(user, cb) {
             $http.get('/api/users/' + user._id + '/documents')
                 .success(function(res) {
@@ -38,3 +46,5 @@ angular.module('dms.services')
 
         return obj;
     }]);
+
+
