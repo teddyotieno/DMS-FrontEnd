@@ -30,8 +30,21 @@
         'ngMaterial',
     ]);
 
-    window.app.run(['$rootScope', '$location', '$state',
-        function($rootScope) {
+    window.app.run(['$rootScope', '$location', '$state', 'Users',
+        function($rootScope, $location, $state, Users) {
+
+            Users.session(function(err, res) {
+                if (!err) {
+                  var user = {};
+                    if (res.username) {
+                        user.id = res.id;
+                        user.username = res.username;
+                        $rootScope.currentUser = user;
+                    }
+                } else {
+                  console.log(err);
+                }
+            });
 
             $rootScope.menu = [{
                 name: 'Home',
