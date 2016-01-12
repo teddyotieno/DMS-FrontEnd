@@ -11,7 +11,6 @@
       document.content = req.body.content;
       document.ownerId = req.decoded._id;
       document.owner = req.decoded.name.first;
-      console.log(req.decoded);
       document.save(function(err) {
         if (err) {
           return res.send(err);
