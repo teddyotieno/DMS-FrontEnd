@@ -1,5 +1,8 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development') {
+  require('dotenv').load();
+}
 var seeder = require('mongoose-seed');
-var db = require('../server/config/db');
 var Users = require('../server/models/user');
 var Documents = require('../server/models/document');
 var userData;
@@ -47,7 +50,7 @@ var userRole = [{
 }];
 
 // Connect to MongoDB via Mongoose
-seeder.connect(db.url, function() {
+seeder.connect(process.env.DB_URL, function() {
 
     // Load Mongoose models
     seeder.loadModels([
