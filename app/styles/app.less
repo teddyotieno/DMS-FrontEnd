@@ -117,30 +117,57 @@ body {
             margin-top: 0px;
         }
         md-card {
-          width: 100%;
+            width: 100%;
+        }
+    }
+    .documentChild5 {
+        border-right: 1px solid rgb(218, 218, 218)
+    }
+    .documentChild70 {
+        md-grid-list {
+          margin-top: 33px;
+          .createDocument {
+            background: #ffff8d;
+            border: 1px solid rgb(218, 218, 218);
+          }
+          .createDocument:hover {
+            background-color: rgb(255, 255, 255);
+            color: red;
+          }
         }
     }
 }
 
 .documentFormContainer {
+    h3 {
+        color: black;
+        font-style: italic;
+        margin-bottom: 0px;
+    }
     form {
-        min-height: 450px;
-        min-width: 500px;
+        min-height: 200px;
+        min-width: 450px;
         md-input {
             border-color: transparent;
         }
+        .titleAreaContainer {
+            margin-bottom: 0px;
+        }
+        .titleAreaContainer:focus {
+            color: green;
+        }
         .textAreaContainer {
             border-color: transparent;
+            margin-top: 0px;
             textarea {
                 border-color: transparent;
             }
             textarea:focus {
-              border-color: transparent;
+                border-color: transparent;
             }
         }
         button {
-          margin-top: 240px;
-          margin-left: 400px;
+            margin-left: 400px;
         }
     }
 }
