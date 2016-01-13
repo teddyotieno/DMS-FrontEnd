@@ -85,7 +85,6 @@
 
         session: function(req, res) {
             var token = req.headers['x-access-token'] || req.body.token;
-            console.log(token);
             if (token) {
                 jwt.verify(token, superSecret, function(err, decoded) {
                     console.log(decoded._id);
@@ -122,14 +121,11 @@
             Document.find({
                     ownerId: req.params.ownerId
                 })
-                .populate('ownerId')
                 .exec(function(err, docs) {
                     if (err) {
                         return err;
                     } else {
-                        return res.status(200).json({
-                            documents: docs
-                        });
+                        return res.status(200).json(docs);
                     }
                 });
         },
