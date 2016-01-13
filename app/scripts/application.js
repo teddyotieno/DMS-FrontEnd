@@ -37,7 +37,7 @@
                 if (!err) {
                   var user = {};
                     if (res.username) {
-                        user.id = res.id;
+                        user._id = res._id;
                         user.username = res.username;
                         $rootScope.currentUser = user;
                     }
