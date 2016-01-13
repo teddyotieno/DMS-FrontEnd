@@ -5,7 +5,7 @@ angular.module('dms.controllers')
                 Documents.save($scope.document, function(res) {});
                 $mdToast.show($mdToast.simple().textContent('Document Created').hideDelay(3000));
                 $mdDialog.hide();
-                $scope.userDocuments();
+                $rootScope.$emit('documentCreated', {message: 'A new document has been created'});
             } else {
                 $scope.message = 'Document need to be defined';
             }
