@@ -1,13 +1,15 @@
-.header(ng-controller='HeaderCtrl')
+.header(ng-controller='HeaderCtrl' ng-cloak)
   md-toolbar
     .md-toolbar-tools
+      md-button.md-icon-button.home-button(aria-label='Home')
+        md-icon(md-svg-icon='../images/logo.svg')
       span(flex)
-      md-button.md-raised(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
+      md-button.md-raised.other-buttons(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
         | Sign Up
-      md-button.md-raised(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
+      md-button.md-raised.other-buttons(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
         | Log Out
       md-menu(ng-if='!currentUser')
-        md-button.md-raised(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
+        md-button.md-raised.other-buttons(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
           a Log In
         md-menu-content(width='5' style='color:black')
           form(name='loginForm' class='loginForm')
