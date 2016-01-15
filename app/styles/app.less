@@ -1,17 +1,70 @@
 // Styles for Body
-body {
+html body {
     font-size: 1em;
     color: rgb(255, 255, 255);
     font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+// Styles for Blinking Cursor
+.typed-cursor {
+    opacity: .1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+    font-size: 6em;
+    text-align: center;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 // Styles for Header
 .header {
+    width: 100%;
+    z-index: 1;
+    position: absolute;
     md-toolbar {
-        background-color: rgb(255, 255, 255);
+        background: transparent;
         .md-toolbar-tools {
-            background-color: rgb(109, 117, 120);
-            .md-button {
+            .home-button {
+                border: none;
+            }
+            .other-buttons {
                 color: rgb(255, 255, 255);
                 font-size: .6em;
                 min-width: 70px;
@@ -20,7 +73,7 @@ body {
                 background-color: transparent;
                 border: 1px solid yellow;
             }
-            .md-button:hover {
+            .other-buttons:hover {
                 background-color: rgb(255, 255, 255);
                 color: rgb(109, 117, 120);
             }
@@ -29,26 +82,64 @@ body {
 }
 
 .header-content {
-    margin: -17px;
-    padding: 60px 0px;
-    background: url('../images/background-image.jpg');
-    color: rgb(255, 255, 255);
-    .header-content-wrapper {
-        margin: 0px 100px;
-        .header-content-left {
-            font-size: 2.1em;
-            letter-spacing: 2.4px;
-            line-height: 120%;
-        }
-        .header-content-right {
-            .header-content-right-img-holder {
-                background: url('../images/laptop.png');
-                display: block;
-                width: 100%;
-                height: 500px;
-                background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    min-height: 955px;
+    background: url('../images/typewritter2BW.jpg');
+    position: fixed;
+    overflow: auto;
+    .section-content {
+        box-sizing: border-box;
+        position: absolute;
+        top: 30%;
+        left: 48%;
+        transform: translateY(-50%) translateX(-50%);
+        max-width: 605px;
+        text-align: center;
+        text-transform: uppercase;
+        .dynamic-text-section {
+            .dynamic-text-right {
+                font-size: 80px;
+                font-weight: 500;
+                background-color: white;
+                //letter-spacing: .1em;
+                font-weight: 700;
+            }
+            .dynamic-text-left {
+                font-size: 60px;
+                font-weight: normal;
             }
         }
+        // .home-name {
+        //     letter-spacing: .6em;
+        //     font-size: 2.6rem;
+        //     etter-spacing: .2em;
+        //     //font-weight: 700;
+        //     color: white;
+        //     span {
+        //         letter-spacing: .2;
+        //     }
+        // }
+        // .home-title {
+        //     border: 4px solid #fff;
+        //     font-size: 2rem;
+        //     letter-spacing: .4em;
+        //     margin: 20px 0px;
+        // }
+        // .home-cta {
+        //     width: 100%;
+        //     height: 60px;
+        //     text-align: center;
+        //     .home-cta::before {
+        //         content: "";
+        //         position: absolute;
+        //         top: 20px;
+        //         left: 0;
+        //         width: 200px;
+        //         height: 1px;
+        //         background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
+        //     }
+        // }
     }
 }
 
@@ -68,32 +159,49 @@ body {
 // Styles for SignUp
 .signup-image-holder {
     height: 1000px;
-    background: url('../images/background-photo-signup.jpg');
-    md-content {
-        width: 350px;
-        padding: 20px;
-        border-radius: 12px;
-    }
-    ;
-    .signup-form {
-        padding: 110px 70px;
-        md-content {
-            div {
-                form {
-                    .md-button {
-                        margin-left: 250px;
-                        border: 1px solid yellow;
-                        background: rgb(109, 117, 120);
-                        color: rgb(255, 255, 255);
+    // background: red;
+    // /* For browsers that do not support gradients */
+    // background: -webkit-linear-gradient(-45deg, #520435, #352F39);
+    // /* For Safari 5.1 to 6.0 */
+    // background: -o-linear-gradient(-45deg, #520435, #352F39);
+    // /* For Opera 11.1 to 12.0 */
+    // background: -moz-linear-gradient(-45deg, #520435, #352F39);
+    // /* For Firefox 3.6 to 15 */
+    // background: linear-gradient(-45deg, #520435, #352F39);
+    // /* Standard syntax */
+    .signup-70 {
+        background-color: rgb(53, 47, 57);
+        border-right: 2px solid rgb(172, 172, 172);
+        .signup-form-holder {
+            padding: 110px 70px;
+            md-content {
+                width: 380px;
+                padding: 25px;
+                border-radius: 12px;
+                .signUpHeader {
+                    text-align: center;
+                    margin: 0px;
+                    box-shadow: none;
+                    border: 1px solid grey;
+                    padding: 0px;
+                    h3 {
+                        margin: 12px;
                     }
-                    .md-button:hover {
-                        background-color: rgb(255, 255, 255);
-                        color: rgb(109, 117, 120);
-                        border: 1px solid rgb(218, 218, 218);
+                }
+                .signUpForm {
+                    margin-top: 20px;
+                    md-input-container {
+                      height: 54px;
+                    }
+                    .other-inputs {
+                      margin-top: -25px;
                     }
                 }
             }
         }
+    }
+    .signup-30 {
+        background-color: rgb(59, 53, 64);
     }
 }
 
@@ -125,15 +233,15 @@ body {
     }
     .documentChild70 {
         md-grid-list {
-          margin-top: 33px;
-          .createDocument {
-            background: #ffff8d;
-            border: 1px solid rgb(218, 218, 218);
-          }
-          .createDocument:hover {
-            background-color: rgb(255, 255, 255);
-            color: red;
-          }
+            margin-top: 33px;
+            .createDocument {
+                background: #ffff8d;
+                border: 1px solid rgb(218, 218, 218);
+            }
+            .createDocument:hover {
+                background-color: rgb(255, 255, 255);
+                color: red;
+            }
         }
     }
 }
