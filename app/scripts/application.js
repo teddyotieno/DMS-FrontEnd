@@ -35,14 +35,14 @@
 
             Users.session(function(err, res) {
                 if (!err) {
-                  var user = {};
+                    var user = {};
                     if (res.username) {
                         user._id = res._id;
                         user.username = res.username;
                         $rootScope.currentUser = user;
                     }
                 } else {
-                  console.log(err);
+                    console.log(err);
                 }
             });
 
@@ -56,6 +56,8 @@
                 name: 'Documents',
                 state: 'documents'
             }, ];
+
+
         }
     ]);
 
@@ -102,5 +104,6 @@
             $locationProvider.html5Mode(true);
         }
     ]);
-
 })();
+
+
