@@ -1,10 +1,10 @@
 angular.module('dms.controllers')
     .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', function($scope, Documents, $mdDialog, Users, $rootScope) {
         $scope.allDocuments = Documents.query();
+        console.log($rootScope.currentUser);
 
         $scope.getUserDocs = function() {
             Users.userDocuments($rootScope.currentUser, function(err, res) {
-                console.log('On every single refresh');
                 if (err) {
                     console.log(err);
                 } else {
@@ -19,22 +19,35 @@ angular.module('dms.controllers')
             $scope.allDocuments = Documents.query();
         };
 
-
         $rootScope.$on('documentCreated', function(event, data) {
             $scope.getUserDocs();
             console.log('Successfully listened', data);
         });
 
-        // $scope.userDocuments = function() {
-        //     Users.userDocuments($rootScope.currentUser, function(err, res) {
-        //         if (err) {
-        //             $scope.message = 'No documents have been created';
-        //         } else {
-        //             console.log(res);
-        //         }
-        //     });
-        // };
-        // //$scope.userDocuments();
+        $scope.deleteUserDoc = function(ev, doc) {
+          console.log(doc);
+            var confirm = $mdDialog.confirm()
+                .title('Confirm if you want to delete the document?!')
+                .textContent('Once you delete the document, there is no going back!')
+                .ariaLabel('Delete Document')
+                .targetEvent(ev)
+                .ok('Delete')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+              console.log(doc);
+              console.log($rootScope.currentUser);
+              Documents.deleteDoc(doc, function(err, res) {
+                if(err) {
+                  console.log(err);
+                } else {
+                  $scope.getUserDocs();
+                }
+              });
+            }, function() {
+
+            });
+        };
+
         $scope.openOffscreen = function(ev) {
             $mdDialog.show({
                 controller: DialogController,
@@ -43,8 +56,6 @@ angular.module('dms.controllers')
                 targetEvent: ev,
                 clickOutsideToClose: false
             });
-
-
         };
 
         function DialogController($scope, $mdDialog) {
