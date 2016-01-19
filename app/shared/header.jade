@@ -6,24 +6,24 @@
       span(flex)
       md-button.md-raised.other-buttons(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
         | Sign Up
-      md-button.md-raised.other-buttons(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
-        | Log Out
+      md-button.other-buttons.app-icons(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
+        md-icon
+          i(class='material-icons') keyboard_arrow_down
+        md-tooltip Logout
       md-menu(ng-if='!currentUser')
-        md-button.md-raised.other-buttons(aria-label='Log In interactions menu' ng-click='$mdOpenMenu($event)')
+        md-button.md-raised.other-buttons(aria-label='Log In form' ng-click='$mdOpenMenu($event)' style='margin-right: 40px')
           a Log In
-        md-menu-content(width='5' style='color:black')
-          form(name='loginForm' class='loginForm')
-            h3 Sign In
-            md-input-container
-              label Username
-              input(required ng-model='user.username')
-            md-input-container
-              label Password
-              input(required ng-model='user.password')
-            div
-              p(ng-model='messageLogin')
-              md-button.md-raised(aria-label='Sign In' ng-click='login()')
-                | Sign In
+        md-menu-content.md-padding(width='4' md-position-mode='target-left target' style='margin-top: 55px')
+          md-input-container.md-block(md-no-float style='margin-bottom: 0px')
+            md-icon
+              i(class='material-icons') person
+            input(required type='text' ng-model='user.username' placeholder='Username')
+          md-input-container.md-block(md-no-float style='margin-bottom: 0px; margin-top: 10px')
+            md-icon
+              i(class='material-icons') vpn_key
+            input(required type='password' ng-model='user.password' placeholder='Password')
+          md-button.md-raised(aria-label='Sign In' ng-click='login()').signUpHeader
+            | Log In
 
 
 
