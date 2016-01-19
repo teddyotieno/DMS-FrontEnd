@@ -13,23 +13,28 @@ angular.module('dms.controllers')
                         $rootScope.currentUser = res.user;
                         $state.go('documents');
                     } else {
-                        $scope.messageLogin = err.error ||
-                            err.message || err[0].message;
-                        console.log($scope.messageLogin);
+                      console.log(err);
+                        if (err.message === 'Authentication failed. User not found') {
+                            $scope.messageLogin = 'Invalid Username!!';
+                            console.log($scope.messageLogin);
+                        } else if (err.message || err[0].message || err.error === 'Authentication failed. Wrong password') {
+                            $scope.messageLogin = 'Invalid Password!!';
+                            console.log($scope.messageLogin);
+                        }
                     }
                 });
             };
 
             $scope.logout = function() {
-              Users.logout(function(err, res) {
-                if(!err) {
-                  delete $rootScope.currentUser;
-                  Auth.logout();
-                  $state.go('home');
-                } else {
-                  console.log(err, res);
-                }
-              });
+                Users.logout(function(err, res) {
+                    if (!err) {
+                        delete $rootScope.currentUser;
+                        Auth.logout();
+                        $state.go('home');
+                    } else {
+                        console.log(err, res);
+                    }
+                });
             };
         }
     ]);
