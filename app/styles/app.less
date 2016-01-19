@@ -1,10 +1,24 @@
 // Styles for Body
+
+@media (max-width: 600px) {
+  .header-content {
+    background: rgb(41, 38, 47);
+  }
+}
+
+
 html body {
     font-size: 1em;
     color: rgb(255, 255, 255);
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     height: 100%;
+
+    .app-icons {
+      width: 4px;
+      min-width: 35px;
+      margin: 0px;
+    }
 }
 
 // Styles for Blinking Cursor
@@ -77,22 +91,24 @@ html body {
                 background-color: rgb(255, 255, 255);
                 color: rgb(109, 117, 120);
             }
+            md-menu {
+
+            }
         }
     }
 }
 
 .header-content {
     width: 100%;
-    height: 100%;
-    min-height: 955px;
-    background: url('../images/typewritter2BW.jpg');
-    position: fixed;
-    overflow: auto;
+    height: 1000px;
+    background-image: url('../images/typewritter2BW.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
     .section-content {
         box-sizing: border-box;
         position: absolute;
-        top: 30%;
-        left: 48%;
+        top: 32.5%;
+        left: 51%;
         transform: translateY(-50%) translateX(-50%);
         max-width: 605px;
         text-align: center;
@@ -101,7 +117,6 @@ html body {
             .dynamic-text-right {
                 font-size: 80px;
                 font-weight: 500;
-                background-color: white;
                 //letter-spacing: .1em;
                 font-weight: 700;
             }
@@ -110,36 +125,6 @@ html body {
                 font-weight: normal;
             }
         }
-        // .home-name {
-        //     letter-spacing: .6em;
-        //     font-size: 2.6rem;
-        //     etter-spacing: .2em;
-        //     //font-weight: 700;
-        //     color: white;
-        //     span {
-        //         letter-spacing: .2;
-        //     }
-        // }
-        // .home-title {
-        //     border: 4px solid #fff;
-        //     font-size: 2rem;
-        //     letter-spacing: .4em;
-        //     margin: 20px 0px;
-        // }
-        // .home-cta {
-        //     width: 100%;
-        //     height: 60px;
-        //     text-align: center;
-        //     .home-cta::before {
-        //         content: "";
-        //         position: absolute;
-        //         top: 20px;
-        //         left: 0;
-        //         width: 200px;
-        //         height: 1px;
-        //         background: linear-gradient(to right, rgba(255, 255, 255, 0), #fff);
-        //     }
-        // }
     }
 }
 
@@ -191,10 +176,10 @@ html body {
                 .signUpForm {
                     margin-top: 20px;
                     md-input-container {
-                      height: 54px;
+                        height: 54px;
                     }
                     .other-inputs {
-                      margin-top: -25px;
+                        margin-top: -25px;
                     }
                 }
             }
@@ -214,9 +199,19 @@ html body {
 }
 
 // Styles for Document Page
+.document-header {
+  background-color: rgb(41, 38, 47);
+  height: 64px;
+}
 .documentContainer {
+  margin-top: 15px;
     .documentChild30 {
         border-left: solid 1px rgb(218, 218, 218);
+        min-height: 900px;
+        md-sidenav {
+          max-width: 500px;
+          width: 100%;
+        }
         h3 {
             margin: 0px;
             padding-bottom: 0px;
@@ -232,6 +227,7 @@ html body {
         border-right: 1px solid rgb(218, 218, 218)
     }
     .documentChild70 {
+      margin-left: 15px;
         md-grid-list {
             margin-top: 33px;
             .createDocument {
@@ -278,4 +274,8 @@ html body {
             margin-left: 400px;
         }
     }
+}
+
+md-dialog {
+  color: black;
 }
