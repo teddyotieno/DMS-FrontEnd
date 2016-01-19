@@ -1,7 +1,7 @@
 angular.module('dms.services')
-    .factory('Documents', ['$resource', '$http', function($resource) {
+    .factory('Documents', ['$resource', '$http', function($resource, $http) {
         var obj = $resource('/api/documents/:id', {
-            id: '@id'
+            id: '@_id'
         }, {
             update: {
                 // this method issues a PUT request
@@ -10,5 +10,21 @@ angular.module('dms.services')
         }, {
             stripTrailingSlashes: false
         });
+
+        obj.deleteDoc = function(doc, cb) {
+            $http.delete('/api/documents/' + doc._id).success(function(res) {
+                cb(null, res);
+            }).error(function(err) {
+                cb(err);
+            });
+        };
+
+        obj.updateDoc = function(doc, cb) {
+            $http.put('/api/documents/' + doc._id).success(function(res) {
+                cb(null, res);
+            }).error(function(err) {
+                cb(err);
+            });
+        };
         return obj;
     }]);
