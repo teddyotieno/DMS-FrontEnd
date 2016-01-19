@@ -1,7 +1,6 @@
 angular.module('dms.controllers')
-    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', function($scope, Documents, $mdDialog, Users, $rootScope) {
+    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', '$mdToast', function($scope, Documents, $mdDialog, Users, $rootScope, $mdToast) {
         $scope.allDocuments = Documents.query();
-        console.log($rootScope.currentUser);
 
         $scope.getUserDocs = function() {
             Users.userDocuments($rootScope.currentUser, function(err, res) {
@@ -25,7 +24,6 @@ angular.module('dms.controllers')
         });
 
         $scope.deleteUserDoc = function(ev, doc) {
-          console.log(doc);
             var confirm = $mdDialog.confirm()
                 .title('Confirm if you want to delete the document?!')
                 .textContent('Once you delete the document, there is no going back!')
@@ -34,21 +32,23 @@ angular.module('dms.controllers')
                 .ok('Delete')
                 .cancel('Cancel');
             $mdDialog.show(confirm).then(function() {
-              console.log(doc);
-              console.log($rootScope.currentUser);
-              Documents.deleteDoc(doc, function(err, res) {
-                if(err) {
-                  console.log(err);
-                } else {
-                  $scope.getUserDocs();
-                }
-              });
-            }, function() {
-
-            });
+                Documents.deleteDoc(doc, function(err, res) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        $scope.getUserDocs();
+                        $mdToast.show($mdToast.simple().textContent('Document Deleted').hideDelay(2000));
+                    }
+                });
+            }, function() {});
         };
 
-        $scope.openOffscreen = function(ev) {
+        // $scope.updateUserDoc = function(ev, doc) {
+
+        // };
+        $scope.openOffscreen = function(ev, doc) {
+            $rootScope.isUpdating = true;
+            $rootScope.doc = doc;
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: '../views/form.html',
