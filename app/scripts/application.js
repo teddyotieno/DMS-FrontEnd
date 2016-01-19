@@ -69,7 +69,7 @@
             $httpProvider.interceptors.push('TokenInjector');
 
             // For any unmatched url, redirect to /state1
-            $urlRouterProvider.otherwise('/404');
+            $urlRouterProvider.otherwise('/');
 
             $stateProvider
                 .state('home', {
@@ -87,6 +87,11 @@
                     controller: 'DocumentsCtrl',
                     templateUrl: 'views/documents.html'
                 })
+                // .state('form', {
+                //     url: '/form',
+                //     controller: 'FormCtrl',
+                //     templateUrl: 'views/form.html'
+                // })
                 .state('signup', {
                     url: '/signup',
                     controller: 'SignUpCtrl',
