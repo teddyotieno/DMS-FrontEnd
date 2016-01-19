@@ -35,14 +35,14 @@
 
             Users.session(function(err, res) {
                 if (!err) {
-                  var user = {};
+                    var user = {};
                     if (res.username) {
                         user._id = res._id;
                         user.username = res.username;
                         $rootScope.currentUser = user;
                     }
                 } else {
-                  console.log(err);
+                    console.log(err);
                 }
             });
 
@@ -56,6 +56,8 @@
                 name: 'Documents',
                 state: 'documents'
             }, ];
+
+
         }
     ]);
 
@@ -67,7 +69,7 @@
             $httpProvider.interceptors.push('TokenInjector');
 
             // For any unmatched url, redirect to /state1
-            $urlRouterProvider.otherwise('/404');
+            $urlRouterProvider.otherwise('/');
 
             $stateProvider
                 .state('home', {
@@ -85,6 +87,11 @@
                     controller: 'DocumentsCtrl',
                     templateUrl: 'views/documents.html'
                 })
+                // .state('form', {
+                //     url: '/form',
+                //     controller: 'FormCtrl',
+                //     templateUrl: 'views/form.html'
+                // })
                 .state('signup', {
                     url: '/signup',
                     controller: 'SignUpCtrl',
@@ -102,5 +109,6 @@
             $locationProvider.html5Mode(true);
         }
     ]);
-
 })();
+
+

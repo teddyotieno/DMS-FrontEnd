@@ -62,32 +62,25 @@
             Document.findById(req.params.doc_id, function(err, document) {
                 if (err) {
                     res.send(err);
-                } else if (req.decoded._id === document.ownerId ||
-                    req.decoded.title === 'Admin') {
-
-                    // Update the Document Information only if its new
-                    if (req.body.title) {
-                        document.title = req.body.title;
-                    }
-                    if (req.body.content) {
-                        document.content = req.body.content;
-                    }
-
-                    // Save the Document
-                    document.save(function(err) {
-                        if (err) {
-                            res.send(err);
-                        }
-                        res.json({
-                            message: 'Document successfully updated'
-                        });
-                    });
-                } else {
-                    res.json({
-                        success: false,
-                        message: 'You can only update a document you have created'
-                    });
                 }
+
+                // Update the Document Information only if its new
+                if (req.body.title) {
+                    document.title = req.body.title;
+                }
+                if (req.body.content) {
+                    document.content = req.body.content;
+                }
+
+                // Save the Document
+                document.save(function(err) {
+                    if (err) {
+                        res.send(err);
+                    }
+                    res.json({
+                        message: 'Document successfully updated'
+                    });
+                });
             });
         },
 
@@ -95,21 +88,14 @@
         delete: function(req, res) {
             Document.remove({
                 _id: req.params.doc_id
-            }, function(err, document) {
+            }, function(err) {
                 if (err) {
-                    res.status(403).send(err);
+                    res.status(500).send(err);
                 }
-                if (req.decoded._id === document.ownerId ||
-                    req.decoded.title === 'Admin') {
-                    res.json({
-                        message: 'Document successfully deleted!!'
-                    });
-                } else {
-                    res.status(403).json({
-                        success: false,
-                        message: 'You can only delete a document you have created'
-                    });
-                }
+                res.send({
+                    success: true,
+                    message: 'Document successfully deleted!!'
+                });
             });
         },
 

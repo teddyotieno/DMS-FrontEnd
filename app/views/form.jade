@@ -1,10 +1,10 @@
 .documentFormContainer(ng-controller='FormCtrl')
-  h3.md-padding Create Document
+  h3.md-padding {{ currentActionOnDoc }}
   form(name='documentForm').md-padding
     md-input-container.md-block(md-no-float='' class='titleAreaContainer')
       label Title
-      input(required type='text', ng-model='document.title')
+      input(required type='text' name="title" ng-model='document.title')
     md-input-container.md-block(class='textAreaContainer' md-no-float='')
-      textarea(type='text' ng-model='document.content' placeholder='Type your document...')
-    md-button.md-raised(aria-label='Create' ng-click='createDoc()')
-      | Create
+      textarea(type='text' name="content" ng-model='document.content' placeholder='Type your document...')
+    md-button.md-raised(aria-label='Create' ng-click='createOrUpdateDoc()')
+      | {{ buttonAction }}

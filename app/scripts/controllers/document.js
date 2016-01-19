@@ -1,10 +1,9 @@
 angular.module('dms.controllers')
-    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', function($scope, Documents, $mdDialog, Users, $rootScope) {
+    .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog', 'Users', '$rootScope', '$mdToast', function($scope, Documents, $mdDialog, Users, $rootScope, $mdToast) {
         $scope.allDocuments = Documents.query();
 
         $scope.getUserDocs = function() {
             Users.userDocuments($rootScope.currentUser, function(err, res) {
-                console.log('On every single refresh');
                 if (err) {
                     console.log(err);
                 } else {
@@ -19,23 +18,37 @@ angular.module('dms.controllers')
             $scope.allDocuments = Documents.query();
         };
 
-
         $rootScope.$on('documentCreated', function(event, data) {
             $scope.getUserDocs();
             console.log('Successfully listened', data);
         });
 
-        // $scope.userDocuments = function() {
-        //     Users.userDocuments($rootScope.currentUser, function(err, res) {
-        //         if (err) {
-        //             $scope.message = 'No documents have been created';
-        //         } else {
-        //             console.log(res);
-        //         }
-        //     });
+        $scope.deleteUserDoc = function(ev, doc) {
+            var confirm = $mdDialog.confirm()
+                .title('Confirm if you want to delete the document?!')
+                .textContent('Once you delete the document, there is no going back!')
+                .ariaLabel('Delete Document')
+                .targetEvent(ev)
+                .ok('Delete')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                Documents.deleteDoc(doc, function(err, res) {
+                    if (err) {
+                        console.error(err);
+                    } else {
+                        $scope.getUserDocs();
+                        $mdToast.show($mdToast.simple().textContent('Document Deleted').hideDelay(2000));
+                    }
+                });
+            }, function() {});
+        };
+
+        // $scope.updateUserDoc = function(ev, doc) {
+
         // };
-        // //$scope.userDocuments();
-        $scope.openOffscreen = function(ev) {
+        $scope.openOffscreen = function(ev, doc) {
+            $rootScope.isUpdating = true;
+            $rootScope.doc = doc;
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: '../views/form.html',
@@ -43,8 +56,6 @@ angular.module('dms.controllers')
                 targetEvent: ev,
                 clickOutsideToClose: false
             });
-
-
         };
 
         function DialogController($scope, $mdDialog) {

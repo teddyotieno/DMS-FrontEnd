@@ -42,6 +42,13 @@
     "morgan": "^1.6.1",
     "request": "^2.67.0",
     "superagent": "^1.5.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.6"
+  },
+  "devDependencies": {
+    "karma-sinon": "^1.0.4",
+    "sinon": "^1.17.2"
   }
 }
