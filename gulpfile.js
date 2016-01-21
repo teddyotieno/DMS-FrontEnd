@@ -7,7 +7,9 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     nodemon = require('gulp-nodemon'),
     bower = require('gulp-bower'),
-    //jasmine = require('gulp-jasmine'),
+    karma = require('gulp-karma')
+    jasmine = require('gulp-jasmine'),
+
     browserify = require('browserify'),
     paths = {
         public: 'public/**',
@@ -19,13 +21,13 @@ var gulp = require('gulp'),
             '!app/images/**/*',
             'app/**/*.*'
         ],
+        unitTests: [],
         styles: 'app/styles/*.+(less|css)'
     };
 
 gulp.task('default', function() {
     console.log('Everything is working out okay');
 });
-
 
 gulp.task('jade', function() {
     gulp.src(paths.jade)
@@ -55,7 +57,7 @@ gulp.task('test:fend', function() {
     // Be sure to return the stream
     return gulp.src(paths.unitTests)
         .pipe(karma({
-            configFile: __dirname + '/karma.config.js',
+            configFile: __dirname + '/karma.conf.js',
             // autoWatch: false,
             // singleRun: true
             action: 'run'
