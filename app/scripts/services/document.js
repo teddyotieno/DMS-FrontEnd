@@ -11,14 +11,6 @@ angular.module('dms.services')
             stripTrailingSlashes: false
         });
 
-        obj.deleteDoc = function(doc, cb) {
-            $http.delete('/api/documents/' + doc._id).success(function(res) {
-                cb(null, res);
-            }).error(function(err) {
-                cb(err);
-            });
-        };
-
         obj.updateDoc = function(doc, cb) {
             $http.put('/api/documents/' + doc._id).success(function(res) {
                 cb(null, res);
