@@ -1,6 +1,6 @@
 angular.module('dms.controllers')
-    .controller('SignUpCtrl', ['$rootScope', '$scope', '$state', '$window', 'Users', 'Auth',
-        function($rootScope, $scope, $state, $window, Users, Auth) {
+    .controller('SignUpCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
+        function($rootScope, $scope, $state, Users, Auth) {
             $scope.titles = ['Public', 'Admin'];
             // signup
             $scope.signup = function() {
@@ -27,8 +27,6 @@ angular.module('dms.controllers')
                     Users.save(user, function(res) {
                         Auth.setToken(res.token);
                         $rootScope.currentUser = res;
-                        console.log(res);
-                        console.log('$rootScope.currentUser: ', $rootScope.currentUser);
                         $state.go('documents', {
                             id: $rootScope.currentUser.id
                         });
@@ -38,7 +36,7 @@ angular.module('dms.controllers')
                     });
                 } else {
                     $scope.messageSignup =
-                        'Your confirmation password does not match the initial password you have given.';
+                        'Your confirmation password does not match the initial password you have given';
                 }
                 console.log($scope.messageSignup);
             };

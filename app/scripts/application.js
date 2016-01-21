@@ -1,4 +1,4 @@
-(function() {
+ (function() {
     'use strict';
     angular.module('dms.controllers', []);
     angular.module('dms.services', []);
@@ -16,9 +16,6 @@
     require('./services/user');
     require('./services/document');
     require('./services/token-injector');
-
-
-
 
     window.app = angular.module('dms', [
         'dms.controllers',
@@ -56,8 +53,6 @@
                 name: 'Documents',
                 state: 'documents'
             }, ];
-
-
         }
     ]);
 
@@ -87,11 +82,6 @@
                     controller: 'DocumentsCtrl',
                     templateUrl: 'views/documents.html'
                 })
-                // .state('form', {
-                //     url: '/form',
-                //     controller: 'FormCtrl',
-                //     templateUrl: 'views/form.html'
-                // })
                 .state('signup', {
                     url: '/signup',
                     controller: 'SignUpCtrl',

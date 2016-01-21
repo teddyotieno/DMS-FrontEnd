@@ -1,7 +1,6 @@
 angular.module('dms.controllers')
-    .controller('HeaderCtrl', ['$scope', '$rootScope', '$state',
-        '$window', 'Users', 'Auth',
-        function($scope, $rootScope, $state, $window, Users, Auth) {
+    .controller('HeaderCtrl', ['$scope', '$rootScope', '$state', 'Users', 'Auth',
+        function($scope, $rootScope, $state, Users, Auth) {
             $scope.user = {};
             $scope.login = function() {
                 Users.login($scope.user, function(err, res) {
@@ -13,13 +12,11 @@ angular.module('dms.controllers')
                         $rootScope.currentUser = res.user;
                         $state.go('documents');
                     } else {
-                      console.log(err);
+                        console.log(err);
                         if (err.message === 'Authentication failed. User not found') {
                             $scope.messageLogin = 'Invalid Username!!';
-                            console.log($scope.messageLogin);
                         } else if (err.message || err[0].message || err.error === 'Authentication failed. Wrong password') {
                             $scope.messageLogin = 'Invalid Password!!';
-                            console.log($scope.messageLogin);
                         }
                     }
                 });
@@ -27,12 +24,10 @@ angular.module('dms.controllers')
 
             $scope.logout = function() {
                 Users.logout(function(err, res) {
-                    if (!err) {
+                    if (!err && res) {
                         delete $rootScope.currentUser;
                         Auth.logout();
                         $state.go('home');
-                    } else {
-                        console.log(err, res);
                     }
                 });
             };
