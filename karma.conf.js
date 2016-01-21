@@ -11,7 +11,7 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'sinon'],
 
 
         // list of files / patterns to load in the browser
@@ -25,9 +25,20 @@ module.exports = function(config) {
             'public/lib/angular-material/angular-material.min.js',
             'public/lib/angular-resource/angular-resource.min.js',
             'public/lib/angular-route/angular-route.min.js',
+            'public/lib/angular-mocks/angular-mocks.js',
             'public/lib/jquery/dist/jquery.min.js',
             'public/lib/typed.js/dist/typed.min.js',
-            'public/js/application.js'
+            'public/js/application.js',
+            'tests/client/unit/controllers/signup.spec.js',
+            'tests/client/unit/controllers/document.spec.js',
+            'tests/client/unit/controllers/header.spec.js',
+            'tests/client/unit/controllers/form.spec.js',
+            'tests/client/unit/controllers/welcome.spec.js',
+            'tests/client/unit/services/auth.spec.js',
+            'tests/client/unit/services/token-injector.spec.js',
+            'tests/client/unit/services/token.spec.js',
+            'tests/client/unit/services/users.spec.js'
+
         ],
 
 
@@ -39,14 +50,16 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/
         // karma-preprocessor
-        preprocessors: {},
+        preprocessors: {
+            'public/js/application.js': ['coverage']
+        },
 
 
         // test results reporter to use
         // possible values: 'dots', 'progress', 'junit', 'growl',
         // 'coverage', 'spec', 'failed'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: [ /*'coverage',*/ 'progress'],
+        reporters: ['coverage', 'progress'],
 
         // web server port
         port: 9876,
@@ -94,6 +107,17 @@ module.exports = function(config) {
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false
+        singleRun: false,
+
+        coverageReporter: {
+            dir: 'coverage/',
+            reporters: [{
+                type: 'html',
+                subdir: 'html'
+            }, {
+                type: 'lcovonly',
+                subdir: 'lcov'
+            }]
+        }
     });
 };
