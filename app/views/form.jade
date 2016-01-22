@@ -7,7 +7,7 @@
     md-input-container.md-block(class='textAreaContainer' md-no-float='')
       textarea(type='text' name="content" ng-model='document.content' placeholder='Type your document...')
     section(layout='row' layout-sm='column' layout-wrap layout-align='end center')
-      md-button.md-raised(aria-label='Create' ng-click='createOrUpdateDoc()' style='margin: 0px')
+      md-button.create(aria-label='Create' ng-click='createOrUpdateDoc()')
         | {{ buttonAction }}
-      md-button.md-raised(aria-label='Cancel' ng-click='cancel()' style='margin: 0px')
+      md-button(aria-label='Cancel' ng-click='cancel()')
         | Cancel

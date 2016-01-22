@@ -11,7 +11,7 @@
 
   .documentChild70(flex='65' ng-cloak)
     .md-padding
-      h3.md-subheader My Documents
+      h3 My Documents
       div(ng-cloak='')
         md-grid-list(md-cols-xs='1' md-cols-sm='2', md-cols-md='3', md-cols-gt-md='4', md-row-height-md='1:1.3' md-row-height-gt-md='1:1.3', md-row-height-sm='1:1.3', md-row-height-xs='2:2' md-gutter='8px', md-gutter-gt-sm='24px')
           md-grid-tile.creteDocument(md-ink-ripple ng-click='openOffscreen($event)')
@@ -22,17 +22,15 @@
                 h4(style='margin-top: 0px; border-bottom: 1px solid rgb(218,218,218); padding-bottom: 7px; margin-bottom: 10px') {{document.title}}
                 p(style='font-size: x-small') {{document.content}}
               md-card-actions(layout='row')
-                md-button(aria-label='More Options').app-icons
-                  md-icon
-                    i(class='material-icons') more_vert
-                md-button(ng-click='deleteUserDoc($event, document)').app-icons
-                  md-icon
-                    i(class='material-icons') delete
-                  md-tooltip Delete
                 md-button.app-icons(ng-click='openOffscreen($event, document)')
                   md-icon
                     i(class='material-icons') update
                   md-tooltip Update
+                md-button(ng-click='deleteUserDoc($event, document)').app-icons
+                  md-icon
+                    i(class='material-icons') delete
+                  md-tooltip Delete
+
 
 
 
@@ -40,15 +38,15 @@
     md-sidenav(md-is-locked-open="$mdMedia('gt-sm')")
       md-content
         md-list
-          md-subheader.md-no-sticky() Recent Documents
-          md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated'")
+          h3.md-padding(style='margin-bottom: 20px') Recent Documents
+          md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated' | limitTo:'4'")
             md-card
               md-card-title-text
                 h3.md-padding {{document.title}}
               md-card-content
                 p {{document.content}}
-              md-card-title-text(style='background: rgb(109,117,120)')
-                p.md-padding(style='margin-bottom: 0px; color: white; padding-bottom: 5px') Created by {{document.owner}}
+              md-card-title-text.recentDocFooter
+                p.md-padding Created by {{document.owner}}
                 p.md-padding(style='margin-bottom: 0px; color: white; padding-top: 0px') {{document.dateCreated | date: 'medium'}}
 
 

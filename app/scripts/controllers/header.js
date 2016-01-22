@@ -1,7 +1,17 @@
 angular.module('dms.controllers')
-    .controller('HeaderCtrl', ['$scope', '$rootScope', '$state', 'Users', 'Auth',
-        function($scope, $rootScope, $state, Users, Auth) {
+    .controller('HeaderCtrl', ['$scope', '$rootScope',
+        '$state', 'Users', 'Auth', '$mdSidenav',
+        function($scope, $rootScope, $state, Users, Auth, $mdSidenav) {
             $scope.user = {};
+            $scope.openLoginForm = function() {
+                $mdSidenav('right').toggle();
+            };
+            $scope.closeLoginForm = function() {
+                $mdSidenav('right').close();
+            };
+            $rootScope.$on('Registration Complete', function() {
+                $scope.openLoginForm();
+            });
             $scope.login = function() {
                 Users.login($scope.user, function(err, res) {
                     if (!err) {
@@ -10,12 +20,17 @@ angular.module('dms.controllers')
                         user.firstName = res.user.name.first;
                         user.username = res.user.username;
                         $rootScope.currentUser = res.user;
+                        $scope.messageLogin = '';
+                        $scope.closeLoginForm();
                         $state.go('documents');
                     } else {
                         console.log(err);
-                        if (err.message === 'Authentication failed. User not found') {
+                        if (err.message === 'Authentication failed. ' +
+                            'User not found') {
                             $scope.messageLogin = 'Invalid Username!!';
-                        } else if (err.message || err[0].message || err.error === 'Authentication failed. Wrong password') {
+                        } else if (err.message || err[0].message ||
+                            err.error === 'Authentication failed. ' +
+                            'Wrong password') {
                             $scope.messageLogin = 'Invalid Password!!';
                         }
                     }

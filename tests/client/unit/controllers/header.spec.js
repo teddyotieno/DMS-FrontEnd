@@ -1,5 +1,5 @@
 describe('Header Controller Unit Tests', function() {
-    var $scope, $rootScope, $state, Users, Auth;
+    var $scope, $rootScope, $state, Users, Auth, $mdSidenav;
 
     // Setup the module
     beforeEach(module('dms'));
@@ -23,6 +23,7 @@ describe('Header Controller Unit Tests', function() {
         });
 
         $rootScope = $injector.get('$rootScope');
+        $mdSidenav = $injector.get('$mdSidenav');
         $scope = $rootScope;
         $state = $injector.get('$state');
         Users = $injector.get('Users');
@@ -87,6 +88,16 @@ describe('Header Controller Unit Tests', function() {
             expect($scope.messageLogin).toBe('Invalid Password!!');
             expect(typeof $scope.messageLogin).toBe('string');
         });
+        it('Should define $scope.openLoginForm is defined and calls $mdSideNave when called', function() {
+          expect($scope.openLoginForm).toBeDefined();
+          $mdSidenav = sinon.stub().returns($mdSidenav);
+          $mdSidenav('right');
+          $mdSidenav.toggle = sinon.spy();
+          $scope.openLoginForm();
+          expect($mdSidenav.called).toBe(true);
+          expect($mdSidenave.toggle.called).toBe(true);
+
+        });
         it('Should expect that $scope.logout is defiend and its success function is called when its called', function() {
             expect($scope.logout).toBeDefined();
             expect(typeof $scope.logout).toBe('function');
@@ -100,9 +111,6 @@ describe('Header Controller Unit Tests', function() {
             });
             expect($state.go.called).toBe(true);
             expect(Auth.logout.called).toBe(true);
-        });
-        it('Should expect that', function() {
-
         });
 
     });
