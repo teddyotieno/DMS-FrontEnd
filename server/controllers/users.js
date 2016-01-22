@@ -5,7 +5,6 @@
     var Document = require('../models/document');
     var jwt = require('jsonwebtoken');
     var superSecret = require('../config/index')[env].secretKey;
-    console.log(superSecret);
 
     module.exports = {
 

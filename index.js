@@ -1,3 +1,7 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development') {
+    require('dotenv').load();
+}
 // Modules
 var express = require('express');
 var app = express();
@@ -5,7 +9,7 @@ var path = require('path');
 var methodOverride = require('method-override');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var port = 3000;
+var port = process.env.PORT || 3000;
 
 require('./seeds/seed');
 
