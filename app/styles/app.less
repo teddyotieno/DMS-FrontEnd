@@ -1,11 +1,9 @@
 // Styles for Body
-
 @media (max-width: 600px) {
-  .header-content {
-    background: rgb(41, 38, 47);
-  }
+    .header-content {
+        background: rgb(41, 38, 47);
+    }
 }
-
 
 html body {
     font-size: 1em;
@@ -13,11 +11,13 @@ html body {
     font-family: 'Source Sans Pro', sans-serif;
     width: 100%;
     height: 100%;
-
     .app-icons {
-      width: 4px;
-      min-width: 35px;
-      margin: 0px;
+        width: 4px;
+        min-width: 35px;
+        margin: 0px;
+        i {
+            color: rgb(0, 209, 193);
+        }
     }
 }
 
@@ -85,14 +85,51 @@ html body {
                 min-height: 0px;
                 box-shadow: 0px 0px 0px;
                 background-color: transparent;
-                border: 1px solid yellow;
+                border: 1px solid rgb(0, 209, 193);
             }
             .other-buttons:hover {
-                background-color: rgb(255, 255, 255);
-                color: rgb(109, 117, 120);
+                background-color: rgb(0, 209, 193);
+                color: rgb(255, 255, 255);
+                border: none;
             }
-            md-menu {
-
+        }
+    }
+    .mdSideNav {
+        md-sidenav {
+            background-color: rgb(251, 251, 251);
+            margin-top: 70px;
+            min-height: 300px;
+            margin-right: 50px;
+            max-width: 270px;
+            .cancelButton {
+                min-width: 35px;
+                width: 0%;
+                color: black;
+                i {
+                    display: block;
+                    float: right;
+                }
+            }
+            md-content {
+                background-color: rgb(251, 251, 251);
+                padding-top: 0px;
+                p {
+                    text-align: center;
+                    font-style: italic;
+                }
+                button {
+                    .md-button {
+                        box-shadow: none;
+                    }
+                    width: 100%;
+                    font-weight: 300;
+                }
+            }
+            i {
+                color: rgb(0, 209, 193);
+            }
+            input {
+                color: rgb(41, 38, 47);
             }
         }
     }
@@ -107,24 +144,38 @@ html body {
     .section-content {
         box-sizing: border-box;
         position: absolute;
-        top: 32.5%;
-        left: 51%;
+        top: 31%;
+        left: 50%;
         transform: translateY(-50%) translateX(-50%);
         max-width: 605px;
         text-align: center;
         text-transform: uppercase;
         .dynamic-text-section {
+            text-align: center;
             .dynamic-text-right {
                 font-size: 80px;
                 font-weight: 500;
+                color: rgb(41, 38, 47);
                 //letter-spacing: .1em;
                 font-weight: 700;
             }
             .dynamic-text-left {
+                margin-top: -12px;
                 font-size: 60px;
-                font-weight: normal;
+                font-weight: 300;
+                color: rgb(41, 38, 47);
             }
         }
+    }
+}
+
+.footer {
+    padding: 20px;
+    background-color: rgb(0, 209, 193);
+    color: white;
+    h3 {
+        margin: 0px;
+        font-weight: 300;
     }
 }
 
@@ -144,32 +195,24 @@ html body {
 // Styles for SignUp
 .signup-image-holder {
     height: 1000px;
-    // background: red;
-    // /* For browsers that do not support gradients */
-    // background: -webkit-linear-gradient(-45deg, #520435, #352F39);
-    // /* For Safari 5.1 to 6.0 */
-    // background: -o-linear-gradient(-45deg, #520435, #352F39);
-    // /* For Opera 11.1 to 12.0 */
-    // background: -moz-linear-gradient(-45deg, #520435, #352F39);
-    // /* For Firefox 3.6 to 15 */
-    // background: linear-gradient(-45deg, #520435, #352F39);
-    // /* Standard syntax */
     .signup-70 {
         background-color: rgb(53, 47, 57);
         border-right: 2px solid rgb(172, 172, 172);
         .signup-form-holder {
             padding: 110px 70px;
             md-content {
+                background-color: rgb(251, 251, 251);
                 width: 380px;
                 padding: 25px;
                 border-radius: 12px;
                 .signUpHeader {
                     text-align: center;
+                    background-color: rgb(0, 209, 193);
                     margin: 0px;
                     box-shadow: none;
-                    border: 1px solid grey;
                     padding: 0px;
                     h3 {
+                        font-weight: 300;
                         margin: 12px;
                     }
                 }
@@ -180,6 +223,9 @@ html body {
                     }
                     .other-inputs {
                         margin-top: -25px;
+                    }
+                    label {
+                        color: rgb(41, 38, 57);
                     }
                 }
             }
@@ -200,34 +246,61 @@ html body {
 
 // Styles for Document Page
 .document-header {
-  background-color: rgb(41, 38, 47);
-  height: 64px;
+    background-color: rgb(41, 38, 47);
+    height: 64px;
 }
+
 .documentContainer {
-  margin-top: 15px;
+    background-color: rgb(248, 248, 248);
     .documentChild30 {
+        background-color: rgb(248, 248, 248);
         border-left: solid 1px rgb(218, 218, 218);
         min-height: 900px;
         md-sidenav {
-          max-width: 500px;
-          width: 100%;
+            max-width: 500px;
+            width: 100%;
         }
         h3 {
             margin: 0px;
+            font-weight: 300;
             padding-bottom: 0px;
         }
         p {
             margin-top: 0px;
+            font-weight: 300;
+            letter-spacing: .5px;
+            color: rgb(0, 0, 0);
+        }
+        md-content {
+            background-color: rgb(248, 248, 248);
         }
         md-card {
             width: 100%;
         }
+        .recentDocFooter {
+            background-color: rgb(41, 38, 47);
+            p {
+                color: rgb(255, 255, 255);
+                font-weight: 300;
+                padding-bottom: 5px;
+                margin-bottom: 0px;
+            }
+        }
     }
     .documentChild5 {
-        border-right: 1px solid rgb(218, 218, 218)
+        padding-top: 15px;
+        border-right: 1px solid rgb(218, 218, 218);
+        background-color: rgb(41, 38, 47);
+        i {
+            color: rgb(0, 209, 193);
+        }
     }
     .documentChild70 {
-      margin-left: 15px;
+        background-color: rgb(252, 252, 252);
+        padding-left: 20px;
+        h3 {
+            font-weight: 300;
+        }
         md-grid-list {
             margin-top: 33px;
             .createDocument {
@@ -245,7 +318,7 @@ html body {
 .documentFormContainer {
     h3 {
         color: black;
-        font-style: italic;
+        font-weight: 300;
         margin-bottom: 0px;
     }
     form {
@@ -256,6 +329,9 @@ html body {
         }
         .titleAreaContainer {
             margin-bottom: 0px;
+            label {
+                color: rgb(41, 38, 57);
+            }
         }
         .titleAreaContainer:focus {
             color: green;
@@ -263,6 +339,9 @@ html body {
         .textAreaContainer {
             border-color: transparent;
             margin-top: 0px;
+            label {
+                color: rgb(41, 38, 57);
+            }
             textarea {
                 border-color: transparent;
             }
@@ -272,10 +351,19 @@ html body {
         }
         button {
             margin-left: 400px;
+            margin: 0px;
+            font-weight: 300;
+            background-color: rgb(0, 209, 193);
+        }
+        button:hover {
+          background-color: rgb(255, 255, 255)
+        }
+        .create {
+            margin-right: 15px;
         }
     }
 }
 
 md-dialog {
-  color: black;
+    color: black;
 }
