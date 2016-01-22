@@ -1,20 +1,20 @@
 angular.module('dms.controllers')
-    .controller('SignUpCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth',
-        function($rootScope, $scope, $state, Users, Auth) {
+    .controller('SignUpCtrl', ['$rootScope', '$scope', '$state', 'Users', 'Auth', '$mdToast',
+        function($rootScope, $scope, $state, Users, Auth, $mdToast) {
             $scope.titles = ['Public', 'Admin'];
             // signup
             $scope.signup = function() {
                 if ($scope.user.password.trim().length < 8) {
                     $scope.messageSignup =
-                        'Your password needs to have a length greater than 8 characters';
+                        'Password length needs to be greater than 8 characters';
                 } else if (!/\d/.test($scope.user.password.trim()) ||
                     !/\w/.test($scope.user.password.trim())) {
                     $scope.messageSignup =
-                        'Your password need to contain both numbers and non-word characters';
+                        'Password should contain both numbers and non-word characters';
                 } else if (!/[A-Z]/.test($scope.user.password.trim()) ||
                     !/[a-z]/.test($scope.user.password.trim())) {
                     $scope.messageSignup =
-                        'Your password need to contain both uppercase and lower characters';
+                        'Password should contain both uppercase and lower characters';
                 } else if ($scope.user.password.trim() === $scope.user.confirmPassword.trim()) {
                     var user = {
                         firstname: $scope.user.firstName,
@@ -25,18 +25,19 @@ angular.module('dms.controllers')
                         password: $scope.user.password
                     };
                     Users.save(user, function(res) {
-                        Auth.setToken(res.token);
-                        $rootScope.currentUser = res;
-                        $state.go('documents', {
-                            id: $rootScope.currentUser.id
+                        $mdToast.show($mdToast.simple()
+                            .textContent('Registration Complete!').hideDelay(1000));
+                        $rootScope.$emit('Registration Complete', {
+                            message: 'Open Login Form'
                         });
+                        $scope.messageSignup = '';
                     }, function(err) {
                         console.log(err);
                         $scope.messageSignup = err.data.error[0].message;
                     });
                 } else {
                     $scope.messageSignup =
-                        'Your confirmation password does not match the initial password you have given';
+                        'Confirmation password does not match initial password given';
                 }
                 console.log($scope.messageSignup);
             };
