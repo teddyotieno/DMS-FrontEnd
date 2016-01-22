@@ -1,0 +1,41 @@
+.signup-image-holder(layout='row')
+  .signup-70(flex='70')
+    .signup-form-holder
+      md-content
+        md-card.signUpHeader
+          h3 SIGN UP
+        .signUpForm
+          .firstLast-inputs(layout='row')
+            md-input-container.md-block(flex-gt-sm='')
+              label First name
+              input(required='',ng-model='user.firstName')
+            md-input-container.md-block
+              label Last Name
+              input(ng-model='user.secondName')
+          .other-inputs
+            md-input-container.md-block
+              label Username
+              input(ng-model='user.username')
+            md-input-container.md-block
+              label E-mail
+              input(ng-model='user.email')
+            md-input-container.md-block
+              label Role
+              md-select(ng-model='user.title')
+                md-option(ng-repeat='title in titles', value='{{title}}')
+                  | {{title}}
+            md-input-container.md-block
+              label Password
+              input(ng-model='user.password' type='password')
+            md-input-container.md-block
+              label Confirm your password
+              input(ng-model='user.confirmPassword' type='password')
+            p {{messageSignup}}
+            md-card.signUpHeader
+              md-button(aria-label='Submit' ng-click='signup()')
+                h3 GET STARTED
+
+
+  .signup-30(flex='30')
+
+

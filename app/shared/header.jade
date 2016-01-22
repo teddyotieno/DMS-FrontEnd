@@ -1,0 +1,33 @@
+.header(ng-controller='HeaderCtrl' ng-cloak)
+  md-toolbar
+    .md-toolbar-tools
+      md-button.md-icon-button.home-button(aria-label='Home')
+        md-icon(md-svg-icon='../images/logo.svg')
+      span(flex)
+      md-button.md-raised.other-buttons(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
+        | Sign Up
+      md-button.other-buttons.app-icons(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
+        md-icon
+          i(class='material-icons') keyboard_arrow_down
+        md-tooltip Logout
+      md-button.md-raised.other-buttons(aria-label='Log In form' ng-click='openLoginForm()' ng-hide='isOpenRight()' style='margin-right: 40px' ng-if='!currentUser')
+        a Log In
+  .mdSideNav
+    md-sidenav.md-sidenav-right.md-whiteframe-z2(md-component-id='right')
+      md-button(md-icon-button aria-label='Cancel Login Form' ng-click='closeLoginForm()').cancelButton
+          i(class='material-icons') cancel
+      md-content.md-padding
+        md-input-container.md-block(md-no-float style='margin-bottom: 0px')
+          md-icon
+            i(class='material-icons') person
+          input(required type='text' ng-model='user.username' placeholder='Username')
+        md-input-container.md-block(md-no-float style='margin-bottom: 0px; margin-top: 10px')
+          md-icon
+            i(class='material-icons') vpn_key
+          input(required type='password' ng-model='user.password' placeholder='Password')
+        md-button.md-raised(aria-label='Sign In' ng-click='login()' style='box-shadow: none; background-color: rgb(0,209,193)').signUpHeader
+          | SUBMIT
+        p {{messageLogin}}
+
+
+

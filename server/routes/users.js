@@ -1,36 +1,38 @@
 var Users = require('../controllers/users');
 var Authentication = require('../controllers/auth');
 module.exports = function(app, express) {
-  // Users Routes
+    // Users Routes
+    var apiRouter = express.Router();
 
-  var apiRouter = express.Router();
+    apiRouter.route('/users')
+        .post(Users.signup);
 
+    // Login Route
+    apiRouter.route('/users/login')
+        .post(Users.login);
 
-  apiRouter.route('/users')
-    .post(Users.signup)
-    .get(Users.getAllUsers);
+    //Authentication middleware
+    apiRouter.use(Authentication.auth);
 
-  // Login Route
-  apiRouter.route('/users/login')
-    .post(Users.login);
+    apiRouter.route('/users')
+      .get(Users.getAllUsers);
 
-  //Authentication middleware
-  apiRouter.use(Authentication.auth);
+    apiRouter.route('/users/session')
+        .get(Users.session);
 
+    // Logout route
+    apiRouter.route('/users/logout')
+        .get(Users.logout);
 
-  // Logout route
-  apiRouter.route('/users/logout')
-    .post(Users.logout);
+    // User Routes
+    apiRouter.route('/users/:id')
+        .get(Users.find)
+        .put(Users.update)
+        .delete(Users.delete);
 
-  // User Routes
-  apiRouter.route('/users/:id')
-    .get(Users.find)
-    .put(Users.update)
-    .delete(Users.delete);
+    apiRouter.route('/users/:ownerId/documents')
+        .get(Users.getAllDocumentsByUser);
 
-  apiRouter.route('/users/:ownerId/documents')
-    .get(Users.getAllDocumentsByUser);
-
-  app.use('/api', apiRouter);
+    app.use('/api', apiRouter);
 
 };
