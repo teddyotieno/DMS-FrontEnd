@@ -3,15 +3,20 @@ angular.module('dms.controllers')
         '$state', 'Users', 'Auth', '$mdSidenav',
         function($scope, $rootScope, $state, Users, Auth, $mdSidenav) {
             $scope.user = {};
+
+            // Define $scope.openLoginForm to open $mdSidenav
             $scope.openLoginForm = function() {
                 $mdSidenav('right').toggle();
             };
             $scope.closeLoginForm = function() {
                 $mdSidenav('right').close();
             };
+
+            // Fireup Registration Complete event to alert other scopes
             $rootScope.$on('Registration Complete', function() {
                 $scope.openLoginForm();
             });
+
             $scope.login = function() {
                 Users.login($scope.user, function(err, res) {
                     if (!err) {

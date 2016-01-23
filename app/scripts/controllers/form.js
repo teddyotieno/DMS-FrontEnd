@@ -35,18 +35,20 @@ angular.module('dms.controllers')
                             }
                             if (doc) {
                                 $mdToast.show($mdToast.simple()
-                                    .textContent('Document ' + $scope.buttonAction)
+                                    .textContent('Document ' +
+                                        $scope.buttonAction)
                                     .hideDelay(3000));
                                 $mdDialog.hide();
                                 $rootScope.$emit('documentCreated', {
-                                    message: 'The document has been '
-                                    + $scope.buttonAction + 'd'
+                                    message: 'The document has been ' +
+                                        $scope.buttonAction + 'd'
                                 });
                             }
                         });
                 }
             };
 
+            // Cancel form dialog box
             $scope.cancel = function() {
                 $mdDialog.cancel();
             };

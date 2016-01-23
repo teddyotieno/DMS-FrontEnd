@@ -22,7 +22,7 @@
 
         // Gets all document resources in the DB
         getAllDocuments: function(req, res) {
-            Document.find(function(err, documents) {
+            Document.find({}).exec(function(err, documents) {
                 if (err) {
                     res.send(err);
                 }

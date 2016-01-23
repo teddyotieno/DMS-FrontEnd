@@ -1,3 +1,7 @@
+var env = process.env.NODE_ENV || 'development';
+if (env === 'development') {
+    require('dotenv').load();
+}
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     less = require('gulp-less'),
@@ -7,8 +11,9 @@ var gulp = require('gulp'),
     source = require('vinyl-source-stream'),
     nodemon = require('gulp-nodemon'),
     bower = require('gulp-bower'),
-    karma = require('gulp-karma')
-    jasmine = require('gulp-jasmine'),
+    jasmineTest = require('gulp-jasmine'),
+    karma = require('gulp-karma'),
+
 
     browserify = require('browserify'),
     paths = {
@@ -22,11 +27,18 @@ var gulp = require('gulp'),
             'app/**/*.*'
         ],
         unitTests: [],
+        serverTests: 'tests/server/src/*.js',
         styles: 'app/styles/*.+(less|css)'
     };
 
-gulp.task('default', function() {
-    console.log('Everything is working out okay');
+gulp.task('codeclimate-reporter', ['test:fend'], function() {
+    return gulp.src(['coverage/lcov/lcov.info'], {
+            read: false
+        })
+        .pipe(reporter({
+            token: process.env.CODECLIMATE_REPO_TOKEN,
+            verbose: true
+        }));
 });
 
 gulp.task('jade', function() {
@@ -83,6 +95,14 @@ gulp.task('nodemon', function() {
         .on('restart', function() {
             console.log('>> node restart');
         });
+});
+
+gulp.task('test:bend', function() {
+    return gulp.src(paths.serverTests)
+        // gulp-jasmine works on filepaths so you can't have any plugins before it
+        .pipe(jasmineTest({
+            verbose: true
+        }));
 });
 
 gulp.task('images', function() {
