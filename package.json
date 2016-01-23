@@ -5,11 +5,10 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "pretest": "node index.js seed & sleep 15\n",
+        "pretest": "node index.js",
         "test": "gulp test",
         "posttest": "pkill node",
-        "build": "gulp heroku:production",
-        "seed": "node seeds/seed.js seed"
+        "build": "gulp heroku:production"
     },
     "repository": {
         "type": "git",
