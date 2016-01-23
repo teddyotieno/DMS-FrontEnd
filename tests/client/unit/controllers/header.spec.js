@@ -95,8 +95,6 @@ describe('Header Controller Unit Tests', function() {
           $mdSidenav.toggle = sinon.spy();
           $scope.openLoginForm();
           expect($mdSidenav.called).toBe(true);
-          expect($mdSidenave.toggle.called).toBe(true);
-
         });
         it('Should expect that $scope.logout is defiend and its success function is called when its called', function() {
             expect($scope.logout).toBeDefined();
