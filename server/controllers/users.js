@@ -71,11 +71,14 @@
                         var token = jwt.sign(user, superSecret, {
                             expiresIn: 10800
                         });
+                        var user_details = user;
+                        user_details.password = '';
+                        console.log(user_details.password);
                         res.json({
                             success: true,
                             message: 'User successfully logged in',
                             token: token,
-                            user: user
+                            user: user_details
                         });
                     }
                 }
@@ -102,8 +105,8 @@
                                     message: 'User not found'
                                 });
                             }
-                            delete user.password;
                             req.decoded = user;
+                            user.password = '';
                             return res.json(user);
                         });
                     }
@@ -153,15 +156,16 @@
         update: function(req, res) {
             User.findById(req.params.id, function(err, user) {
                 if (err) {
+                    console.log(err);
                     res.send(err);
                 }
 
                 // Update the User Information only if its new
-                if (req.body.firstname) {
-                    user.name.first = req.body.firstname;
+                if (req.body.name.first) {
+                    user.name.first = req.body.name.first;
                 }
-                if (req.body.secondname) {
-                    user.name.second = req.body.secondname;
+                if (req.body.name.second) {
+                    user.name.second = req.body.name.second;
                 }
                 if (req.body.username) {
                     user.username = req.body.username;
@@ -173,15 +177,19 @@
                     user.email = req.body.email;
                 }
 
+                console.log('Almost Updating');
                 // Save the user
                 user.save(function(err) {
                     if (err) {
                         res.send(err);
                     }
+                    var user_details = user;
+                    user_details.password = '';
                     res.json({
-                        message: 'User successfully updated'
+                        user: user_details
                     });
                 });
+                console.log('Updated');
             });
         },
 
