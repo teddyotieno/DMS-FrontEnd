@@ -1,7 +1,10 @@
 angular.module('dms.controllers')
     .controller('DocumentsCtrl', ['$scope', 'Documents', '$mdDialog',
-        'Users', '$rootScope', '$mdToast',
-        function($scope, Documents, $mdDialog, Users, $rootScope, $mdToast) {
+        'Users', '$rootScope', '$mdToast', '$mdSidenav',
+        function($scope, Documents, $mdDialog, Users,
+            $rootScope, $mdToast, $mdSidenav) {
+            $scope.user = $rootScope.currentUser;
+
 
             // Fetch all documents from the server when the app initializes
             $scope.allDocuments = Documents.query();
@@ -63,6 +66,31 @@ angular.module('dms.controllers')
                     targetEvent: ev,
                     clickOutsideToClose: false,
                 });
+            };
+
+            // Open User Form to allow User to update his details
+            $scope.openUserForm = function() {
+                $mdSidenav('left').toggle();
+            };
+
+            $scope.closeUserForm = function() {
+                $mdSidenav('left').close();
+            };
+
+            $scope.updateUser = function() {
+                if ($scope.user === $rootScope.currentUser) {
+                    Users.update($scope.user, function(res) {
+                        $rootScope.currentUser = res.user;
+                        $mdToast.show($mdToast.simple()
+                            .textContent('User Details Updated')
+                            .hideDelay(2000));
+                        $scope.closeUserForm();
+                    });
+                } else {
+                    $mdToast.show($mdToast.simple()
+                        .textContent('Nothing to Update').hideDelay(2000));
+                }
+
             };
 
             function DialogController($scope, $mdDialog) {
