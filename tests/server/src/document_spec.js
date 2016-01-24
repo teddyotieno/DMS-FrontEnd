@@ -48,7 +48,6 @@ var docId1, docId2;
                     })
                     .set('x-access-token', token)
                     .end(function(err, res) {
-                        console.log(res);
                         docId1 = res.body.document._id;
                         expect(res.status).toEqual(200);
                         expect(res.body.message).toBeDefined();
