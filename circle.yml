@@ -13,6 +13,7 @@ machine:
     PORT: 3000
     SECRET_KEY: teddyotienoasoladms
     CODECLIMATE_REPO_TOKEN: 61420ea901ab5e70d677f63f93bd59242247ac7c96231e87815b65e942adc020
+    BUILDPACK_URL: https://github.com/timdp/heroku-buildpack-nodejs-gulp.git
 
 test:
   override:
