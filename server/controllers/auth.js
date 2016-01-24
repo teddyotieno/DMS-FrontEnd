@@ -16,7 +16,6 @@
                             message: 'Failed to authenticate token'
                         });
                     } else {
-                        console.log(decoded);
                         if (decoded._doc) {
                             req.decoded = decoded._doc;
                         } else {
