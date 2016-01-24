@@ -5,11 +5,51 @@
       md-button(md-fab aria-label='Create Document' ng-click='openOffscreen($event)')
         md-icon
           i(class='material-icons') create
-      md-button(md-fab aria-label='User Role')
+        md-tooltip Create Document
+      md-button(md-fab aria-label='User Role' ng-click='openUserForm()')
         md-icon
-          i(class='material-icons') supervisor_account
+          i(class='material-icons') face
+        md-tooltip User Profile
+
 
   .documentChild70(flex='65' ng-cloak)
+    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left').userForm
+      md-toolbar
+      md-content(layout-padding='')
+        md-input-container.md-icon-float.md-block
+          label First Name
+          md-icon
+            i(class='material-icons') person
+          input(ng-model='user.name.first', type='text')
+        md-input-container.md-icon-float.md-block
+          label Last Name
+          md-icon
+            i(class='material-icons') person
+          input(ng-model='user.name.second', type='text')
+        md-input-container.md-icon-float.md-block
+          label Username
+          md-icon
+            i(class='material-icons') face
+          input(ng-model='user.username', type='text')
+        md-input-container.md-icon-float.md-block
+          label New Password
+          md-icon
+            i(class='material-icons') vpn_key
+          input(ng-model='user.password', type='password')
+        md-input-container.md-icon-float.md-block
+          label E-mail
+          md-icon
+            i(class='material-icons') email
+          input(ng-model='user.email', type='text')
+        md-input-container.md-icon-float.md-block
+          label Role
+          md-icon
+            i(class='material-icons') supervisor_account
+          input(ng-model='user.title', type='text')
+        md-button(style='background:rgb(0, 209,193)' ng-click='updateUser()')
+          | UPDATE DETAILS
+
+
     .md-padding
       h3 My Documents
       div(ng-cloak='')
