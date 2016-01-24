@@ -1,7 +1,7 @@
 angular.module('dms.services')
     .factory('Users', ['$resource', '$http', function($resource, $http) {
         var obj = $resource('/api/users/:id', {
-            id: '@id'
+            id: '@_id'
         }, {
             update: {
                 // this method issues a PUT request
