@@ -1,56 +1,58 @@
 {
-  "name": "dms",
-  "version": "1.0.0",
-  "description": "The system manages documents, users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published.",
-  "main": "index.js",
-  "scripts": {
-    "pretest": "node index &\nsleep 3",
-    "test": "jasmine-node spec/src --verbose || :",
-    "posttest": "pkill node"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andela-totieno/DMS-FrontEnd.git"
-  },
-  "author": "Teddy Otieno Asola",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/andela-totieno/DMS-FrontEnd/issues"
-  },
-  "homepage": "https://github.com/andela-totieno/DMS-FrontEnd#readme",
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.14.1",
-    "bower": "^1.7.1",
-    "browserify": "^12.0.1",
-    "dotenv": "^1.2.0",
-    "express": "^4.13.3",
-    "faker": "^3.0.1",
-    "gulp": "^3.9.0",
-    "gulp-bower": "0.0.11",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-jasmine": "^2.2.1",
-    "gulp-karma": "0.0.5",
-    "gulp-less": "^3.0.5",
-    "gulp-nodemon": "^2.0.4",
-    "gulp-util": "^3.0.7",
-    "jasmine-node": "^1.14.5",
-    "jsonwebtoken": "^5.4.1",
-    "karma": "^0.13.9",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-jasmine": "^0.3.6",
-    "karma-coverage": "^0.5.3",
-    "method-override": "^2.3.5",
-    "mongoose": "^4.1.11",
-    "mongoose-seed": "^0.1.5",
-    "morgan": "^1.6.1",
-    "request": "^2.67.0",
-    "superagent": "^1.5.0",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "devDependencies": {
-    "karma-sinon": "^1.0.4",
-    "sinon": "^1.17.2"
-  }
+    "name": "dms",
+    "version": "1.0.0",
+    "description": "The system manages documents, users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "pretest": "node index.js",
+        "test": "gulp test",
+        "posttest": "pkill node",
+        "build": "gulp heroku:production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andela-totieno/DMS-FrontEnd.git"
+    },
+    "author": "Teddy Otieno Asola",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/andela-totieno/DMS-FrontEnd/issues"
+    },
+    "homepage": "https://github.com/andela-totieno/DMS-FrontEnd#readme",
+    "dependencies": {
+        "bcrypt-nodejs": "0.0.3",
+        "body-parser": "^1.14.1",
+        "bower": "^1.7.1",
+        "browserify": "^12.0.1",
+        "dotenv": "^1.2.0",
+        "express": "^4.13.3",
+        "faker": "^3.0.1",
+        "gulp": "^3.9.0",
+        "gulp-bower": "0.0.11",
+        "gulp-imagemin": "^2.4.0",
+        "gulp-jade": "^1.1.0",
+        "gulp-jasmine": "^2.2.1",
+        "gulp-karma": "0.0.5",
+        "gulp-less": "^3.0.5",
+        "gulp-nodemon": "^2.0.4",
+        "gulp-util": "^3.0.7",
+        "jasmine-node": "^1.14.5",
+        "jsonwebtoken": "^5.4.1",
+        "karma": "^0.13.9",
+        "karma-chrome-launcher": "^0.2.0",
+        "karma-jasmine": "^0.3.6",
+        "karma-coverage": "^0.5.3",
+        "method-override": "^2.3.5",
+        "mongoose": "^4.1.11",
+        "mongoose-seed": "^0.1.5",
+        "morgan": "^1.6.1",
+        "request": "^2.67.0",
+        "superagent": "^1.5.0",
+        "vinyl-source-stream": "^1.1.0"
+    },
+    "devDependencies": {
+        "karma-sinon": "^1.0.4",
+        "sinon": "^1.17.2"
+    }
 }

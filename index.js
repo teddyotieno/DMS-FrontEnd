@@ -13,6 +13,8 @@ var port = process.env.PORT || 3000;
 
 require('./seeds/seed');
 
+
+
 // Use bodyparser so that we can grab infromation from POST requests
 app.use(bodyParser.urlencoded({
     extended: true
@@ -43,6 +45,13 @@ app.get('/*', function(req, res) {
 // Start the Server
 app.listen(port);
 console.log('Magic happening at port ' + port);
+
+process.on('SIGINT', function() {
+    console.log('Exiting...');
+    process.exit();
+});
+
+
 
 // Expose App
 module.exports = app;
