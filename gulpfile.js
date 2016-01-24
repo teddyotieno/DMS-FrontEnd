@@ -9,6 +9,7 @@ var gulp = require('gulp'),
     path = require('path'),
     imagemin = require('gulp-imagemin'),
     source = require('vinyl-source-stream'),
+    reporter = require('gulp-codeclimate-reporter'),
     nodemon = require('gulp-nodemon'),
     bower = require('gulp-bower'),
     jasmineTest = require('gulp-jasmine'),
@@ -32,6 +33,16 @@ var gulp = require('gulp'),
     };
 
 gulp.task('codeclimate-reporter', ['test:fend'], function() {
+    return gulp.src(['coverage/lcov/lcov.info'], {
+            read: false
+        })
+        .pipe(reporter({
+            token: process.env.CODECLIMATE_REPO_TOKEN,
+            verbose: true
+        }));
+});
+
+gulp.task('codeclimate-reporter', ['test:fend', 'test:bend'], function() {
     return gulp.src(['coverage/lcov/lcov.info'], {
             read: false
         })
@@ -65,7 +76,7 @@ gulp.task('images', function() {
         .pipe(gulp.dest('./public/images/'));
 });
 
-gulp.task('test:fend', function() {
+gulp.task('test:fend', ['test:bend'], function() {
     // Be sure to return the stream
     return gulp.src(paths.unitTests)
         .pipe(karma({
@@ -147,5 +158,5 @@ gulp.task('build', ['jade', 'less', 'static-files',
 gulp.task('heroku:production', ['build']);
 gulp.task('heroku:staging', ['build']);
 gulp.task('production', ['nodemon', 'build']);
-gulp.task('test', ['test:fend', 'test:bend']);
+gulp.task('test', ['test:fend', 'test:bend', 'codeclimate-reporter']);
 gulp.task('default', ['nodemon', 'watch', 'build']);
