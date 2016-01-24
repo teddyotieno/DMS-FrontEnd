@@ -4,6 +4,7 @@ dependencies:
   post:
     - npm install module-deps
     - npm install gulp -g
+    - npm install gulp-util -g
 
 machine:
   environment:
