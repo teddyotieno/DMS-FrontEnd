@@ -8,27 +8,41 @@
           .firstLast-inputs(layout='row')
             md-input-container.md-block(flex-gt-sm='')
               label First name
+              md-icon
+                i(class='material-icons') person
               input(required='',ng-model='user.firstName')
             md-input-container.md-block
               label Last Name
+              md-icon
+                i(class='material-icons') person
               input(ng-model='user.secondName')
           .other-inputs
             md-input-container.md-block
               label Username
+              md-icon
+                i(class='material-icons') face
               input(ng-model='user.username')
             md-input-container.md-block
               label E-mail
+              md-icon
+                i(class='material-icons') email
               input(ng-model='user.email')
             md-input-container.md-block
               label Role
+              md-icon
+                i(class='material-icons') supervisor_account
               md-select(ng-model='user.title')
                 md-option(ng-repeat='title in titles', value='{{title}}')
                   | {{title}}
             md-input-container.md-block
               label Password
+              md-icon
+                i(class='material-icons') vpn_key
               input(ng-model='user.password' type='password')
             md-input-container.md-block
               label Confirm your password
+              md-icon
+                i(class='material-icons') vpn_key
               input(ng-model='user.confirmPassword' type='password')
             p {{messageSignup}}
             md-card.signUpHeader
@@ -37,5 +51,4 @@
 
 
   .signup-30(flex='30')
-
 

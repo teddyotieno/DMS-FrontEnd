@@ -13,17 +13,16 @@ angular.module('dms.controllers')
             };
 
             // Fireup Registration Complete event to alert other scopes
-            $rootScope.$on('Registration Complete', function() {
-                $scope.openLoginForm();
+            $rootScope.$on('Registration Complete', function(event, data) {
+                $scope.user.username = data.user_profile.username;
+                $scope.user.password = data.user_profile.password;
+                setTimeout($scope.openLoginForm(), 5000);
             });
 
             $scope.login = function() {
                 Users.login($scope.user, function(err, res) {
                     if (!err) {
                         Auth.setToken(res.token);
-                        var user = {};
-                        user.firstName = res.user.name.first;
-                        user.username = res.user.username;
                         $rootScope.currentUser = res.user;
                         $scope.messageLogin = '';
                         $scope.closeLoginForm();
