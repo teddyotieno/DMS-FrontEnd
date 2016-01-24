@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "node index.js",
-        "pretest": "node index.js",
+        "pretest": "node index.js  & sleep 8\n",
         "test": "gulp test",
         "posttest": "pkill node",
         "build": "gulp heroku:production"

@@ -119,4 +119,4 @@ var seedDocuments = function() {
     });
 };
 
-setTimeout(seedDocuments, 20000);
+setTimeout(seedDocuments, 5000);
