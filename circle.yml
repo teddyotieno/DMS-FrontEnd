@@ -9,7 +9,7 @@ machine:
   environment:
     NODE_ENV: test
     CIRCLE_ENV: test
-    DB_URL:  mongodb://Tedotieno:okwenda@ds047305.mongolab.com:47305/doc-plus-test
+    DB_URL:  mongodb://user01:abc123@ds047305.mongolab.com:47305/doc-plus-test
     PORT: 3000
     SECRET_KEY: teddyotienoasoladms
     CODECLIMATE_REPO_TOKEN: 61420ea901ab5e70d677f63f93bd59242247ac7c96231e87815b65e942adc020
