@@ -16,6 +16,7 @@ angular.module('dms.controllers')
             $rootScope.$on('Registration Complete', function(event, data) {
                 $scope.user.username = data.user_profile.username;
                 $scope.user.password = data.user_profile.password;
+                setTimeout($scope.openLoginForm(), 5000);
             });
 
             $scope.login = function() {
