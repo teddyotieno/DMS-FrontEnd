@@ -38,7 +38,7 @@ angular.module('dms.controllers')
                             .textContent('Registration Complete!')
                             .hideDelay(1000));
                         $rootScope.$emit('Registration Complete', {
-                            message: 'Open Login Form'
+                            user_profile: user
                         });
                         $scope.messageSignup = '';
                     }, function(err) {
