@@ -76,7 +76,7 @@ gulp.task('images', function() {
         .pipe(gulp.dest('./public/images/'));
 });
 
-gulp.task('test:fend', function() {
+gulp.task('test:fend', ['test:bend'], function() {
     // Be sure to return the stream
     return gulp.src(paths.unitTests)
         .pipe(karma({
