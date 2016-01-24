@@ -73,7 +73,7 @@ var userId, token;
                 .end(function(err, res) {
                     expect(res.body.code).toEqual(11000);
                     expect(res.status).toBe(500);
-                    expect(res.body.errmsg).toBe('E11000 duplicate key error index: doc-plus.users.$username_1 dup key: { : "Don" }');
+                    expect(res.body.errmsg.search('E11000 duplicate key error index: doc-plus.users.$username_1 dup key: { : "Don" }')).not.toBe(-1);
                     done();
                 });
         });
