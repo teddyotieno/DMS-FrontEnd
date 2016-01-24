@@ -5,6 +5,7 @@ if (env === 'development') {
 var seeder = require('mongoose-seed');
 var Users = require('../server/models/user');
 var Documents = require('../server/models/document');
+var Roles = require('../server/models/role');
 var userData;
 
 
@@ -54,9 +55,9 @@ seeder.connect(process.env.DB_URL, function() {
 
     // Load Mongoose models
     seeder.loadModels([
-        '../DMS/server/models/role.js',
-        '../DMS/server/models/user.js',
-        '../DMS/server/models/document.js'
+        './server/models/role.js',
+        './server/models/user.js',
+        './server/models/document.js'
 
     ]);
 
