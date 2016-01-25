@@ -37,7 +37,8 @@ module.exports = function(config) {
             'tests/client/unit/services/auth.spec.js',
             'tests/client/unit/services/token-injector.spec.js',
             'tests/client/unit/services/token.spec.js',
-            'tests/client/unit/services/users.spec.js'
+            'tests/client/unit/services/users.spec.js',
+            'tests/client/unit/services/document.spec.js'
 
         ],
 
