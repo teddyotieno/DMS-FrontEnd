@@ -6,6 +6,7 @@
 
 [![Test Coverage](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/badges/coverage.svg)](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/coverage)
 
+[![Circle CI](https://circleci.com/gh/andela-totieno/DMS-FrontEnd.svg?style=svg)](https://circleci.com/gh/andela-totieno/DMS-FrontEnd)
 
 The system manages documents, users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published. Users are categorized by roles. Each user must have a role defined for them.
 
