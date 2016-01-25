@@ -1,6 +1,8 @@
-DOC-PLUS
+### DOC-PLUS
 
-Doc-plus helps your create, organize and manage your documents.
+**Doc-plus helps your create, organize and manage your documents.**
+
+<a href="https://codeclimate.com/github/andela-totieno/DMS-FrontEnd"><img src="https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/badges/gpa.svg" /></a>
 
 <a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/feed"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/gpa.svg" /></a> 
 [![Test Coverage](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/badges/coverage.svg)](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/coverage)
@@ -17,19 +19,29 @@ The system manages documents, users and user roles. Each document defines access
 
 
 ## BACKEND
-  ## Express Routes
+# Express Routes
 
-  The Express module was used to create the routes. The routes are defined in the file `index.js`. The server has to be        started for the routes to be accessible. Start the server by running `nodemon index.js` or `npm test`
+The Express module was used to create the routes. The routes are defined in the file `index.js`. The server has to be        started for the routes to be accessible. Start the server by running `node index.js` or `npm test`
 
+# Seeding
 
-## Seeding
-
-- Once all the dependencies have been installed.
-- Run `npm test` to seed all the models
+Seeding is done automatically once the surver has been spurned or you could also run  the `npm test` command.
 
 
-## Testing
+## TESTING
+
+All tests should run once you run the `npm test` command.
+
+# Backend-Tests
 
 - Make sure you have installed jasmine-node globally
 - Navigate towards the project directory
 - Run `npm test` to spurn the server as well as run the tests
+- 
+# Frontend-Tests
+Frontend Tests are done implementing Karma, Sinon and Jasmine packages.
+
+## FRONTEND
+
+**AngularJS** is the frontend framework implemented. The views were designed using **Angular-material.**
+
