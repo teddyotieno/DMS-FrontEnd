@@ -9,13 +9,17 @@
 
 The system manages documents, users and user roles. Each document defines access rights; the document defines which roles can access it. Also, each document specifies the date it was published. Users are categorized by roles. Each user must have a role defined for them.
 
-## Installation
+## INSTALLATION
 
 - Download and Install NodeJS and MongoDB.
 - Clone the repository on your local machine, make sure you're on the Master branch.
 - Navigate to the directory where you have cloned the project.
 - Run npm install to install all the dependencies.
 
+## USAGE
+- Once all the dependencies have been installed and the direcory path is where you cloned the project.
+- Run `gulp` command on your terminal.
+- Navigate to `http://localhost:3000/` on your browser.
 
 ## BACKEND
 ### Express Routes
@@ -39,6 +43,9 @@ All tests should run once you run the `npm test` command.
 
 ### Frontend-Tests
 Frontend Tests are done implementing Karma, Sinon and Jasmine packages.
+
+## HOSTING
+The application is hosted <a href='doc-plus.herokuapp.com'> here</a>
 
 ## FRONTEND
 
