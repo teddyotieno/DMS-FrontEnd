@@ -14,7 +14,6 @@ describe('Welcome Controller Unit Tests', function() {
       it('Should test that .header-content is defined', function() {
         expect($).toBeDefined();
         expect(typeof $).toBe('function');
-        //$('.header-content').mousemove;
       });
     });
 
