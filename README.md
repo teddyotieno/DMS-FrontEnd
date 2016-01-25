@@ -45,7 +45,7 @@ All tests should run once you run the `npm test` command.
 Frontend Tests are done implementing Karma, Sinon and Jasmine packages.
 
 ## HOSTING
-The application is hosted <a href='doc-plus.herokuapp.com'> here</a>
+The application is hosted <a href='https://doc-plus.herokuapp.com/'> here</a>
 
 ## FRONTEND
 
