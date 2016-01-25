@@ -156,6 +156,7 @@ describe('Document Controller Unit Tests', function() {
             $mdDialog.then.args[0][1]();
             expect($mdToast.show.called).toBe(true);
         });
+
         it('Should test that $scope.openOffScreen is defined', function() {
             var doc = {
                 title: 'title',

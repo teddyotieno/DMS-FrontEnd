@@ -2,6 +2,7 @@ angular.module('dms.controllers')
     .controller('FormCtrl', ['$scope', 'Documents', '$mdDialog',
         '$mdToast', '$rootScope',
         function($scope, Documents, $mdDialog, $mdToast, $rootScope) {
+
             // If rootscope.doc object has not been provided
             // then this is not an update
             // set it to false to invoke the right action
