@@ -36,7 +36,7 @@ All tests should run once you run the `npm test` command.
 - Make sure you have installed jasmine-node globally
 - Navigate towards the project directory
 - Run `npm test` to spurn the server as well as run the tests
-- 
+
 ### Frontend-Tests
 Frontend Tests are done implementing Karma, Sinon and Jasmine packages.
 
