@@ -88,31 +88,35 @@
             var token = req.headers['x-access-token'] || req.body.token;
             if (token) {
                 jwt.verify(token, superSecret, function(err, decoded) {
-                    console.log(decoded._id);
                     if (err) {
                         res.status(401).json({
                             error: 'Session has expired or does not exist',
                             err: err
                         });
                     } else {
-                        User.findById(decoded._id, function(err, user) {
-                            if (err) {
-                                return res.send(err);
-                            }
-                            if (!user) {
-                                return res.status(404).json({
-                                    message: 'User not found'
-                                });
-                            }
-                            if (user._doc) {
-                                req.decoded = user._doc;
-                            } else {
-                                req.decoded = user;
-                            }
-                            req.decoded = user;
-                            user.password = '';
-                            return res.json(user);
-                        });
+                        if (decoded._doc) {
+                            req.decoded = decoded._doc;
+                        } else {
+                            req.decoded = decoded;
+                        }
+                        User.findById(req.decoded._id)
+                            .populate('role')
+                            .exec(function(err, user) {
+                                if (err) {
+                                    res.status(500).json({
+                                        message: 'Error retrieving user',
+                                        err: err
+                                    });
+                                } else if (!user) {
+                                    res.status(500).json({
+                                        message: 'User not found'
+                                    });
+                                } else {
+                                    delete user.password;
+                                    req.decoded = user;
+                                    res.json(user);
+                                }
+                            });
                     }
                 });
             } else {

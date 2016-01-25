@@ -39,6 +39,7 @@ describe('Form Controller Unit Tests', function() {
             expect($rootScope.buttonAction).toBeDefined();
             expect($scope.document).toBeDefined();
         });
+
         it('Should define $scope.createOrUpdateDoc and call Document[actionToTake] to save a new document', function() {
             $scope.document = {
                 title: 'title',
@@ -59,6 +60,7 @@ describe('Form Controller Unit Tests', function() {
                 res: 'res'
             });
         });
+
         it('Should test that Documenet[actionToTake] and its failure action are called', function() {
             $scope.document = {
                 title: 'title',
@@ -81,6 +83,7 @@ describe('Form Controller Unit Tests', function() {
             }, null);
             expect(console.log.called).toBe(true);
         });
+
         it('Should test that $scope.cancel is defined ', function() {
             expect($scope.cancel).toBeDefined();
             expect(typeof $scope.cancel).toBe('function');

@@ -5,19 +5,21 @@ angular.module('dms.controllers')
             $rootScope, $mdToast, $mdSidenav) {
             $scope.user = $rootScope.currentUser;
 
-
             // Fetch all documents from the server when the app initializes
             $scope.allDocuments = Documents.query();
 
             // Fetch all documents by the logged in User
             $scope.getUserDocs = function() {
-                Users.userDocuments($rootScope.currentUser, function(err, res) {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        $scope.userDocs = res;
-                    }
-                });
+                if ($scope.user) {
+                    Users.userDocuments($scope.user, function(err, res) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            $scope.userDocs = res;
+                            console.log(res);
+                        }
+                    });
+                }
             };
             $scope.getUserDocs();
 

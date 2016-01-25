@@ -31,12 +31,8 @@
          function($rootScope, $location, $state, Users) {
 
              Users.session(function(err, res) {
-                 if (!err) {
-                     if (res.username) {
-                         $rootScope.currentUser = res;
-                     }
-                 } else {
-                     console.log(err);
+                 if (!err && res) {
+                     $rootScope.currentUser = res;
                  }
              });
 
