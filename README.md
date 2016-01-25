@@ -4,7 +4,6 @@
 
 <a href="https://codeclimate.com/github/andela-totieno/DMS-FrontEnd"><img src="https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/badges/gpa.svg" /></a>
 
-<a href="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/feed"><img src="https://codeclimate.com/repos/566fd3c6eb2be21abd001365/badges/220a7c6d9037da70bd81/gpa.svg" /></a> 
 [![Test Coverage](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/badges/coverage.svg)](https://codeclimate.com/github/andela-totieno/DMS-FrontEnd/coverage)
 
 
