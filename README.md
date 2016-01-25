@@ -1,4 +1,4 @@
-### DOC-PLUS
+# DOC-PLUS
 
 **Doc-plus helps your create, organize and manage your documents.**
 
@@ -18,11 +18,11 @@ The system manages documents, users and user roles. Each document defines access
 
 
 ## BACKEND
-# Express Routes
+### Express Routes
 
 The Express module was used to create the routes. The routes are defined in the file `index.js`. The server has to be        started for the routes to be accessible. Start the server by running `node index.js` or `npm test`
 
-# Seeding
+### Seeding
 
 Seeding is done automatically once the surver has been spurned or you could also run  the `npm test` command.
 
@@ -31,13 +31,13 @@ Seeding is done automatically once the surver has been spurned or you could also
 
 All tests should run once you run the `npm test` command.
 
-# Backend-Tests
+### Backend-Tests
 
 - Make sure you have installed jasmine-node globally
 - Navigate towards the project directory
 - Run `npm test` to spurn the server as well as run the tests
 - 
-# Frontend-Tests
+### Frontend-Tests
 Frontend Tests are done implementing Karma, Sinon and Jasmine packages.
 
 ## FRONTEND
