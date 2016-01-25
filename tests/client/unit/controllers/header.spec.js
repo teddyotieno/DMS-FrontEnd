@@ -40,6 +40,7 @@ describe('Header Controller Unit Tests', function() {
         Users.logout = sinon.stub().returns({
             res: 'res'
         });
+        $rootScope.$on = sinon.stub();
         SignUpCtrl = $controller('HeaderCtrl', {
             $scope: $scope,
             $rootScope: $rootScope
@@ -57,6 +58,7 @@ describe('Header Controller Unit Tests', function() {
             expect($scope.user.password).toBeDefined();
             expect(typeof $scope.user).toBe('object');
         });
+
         it('Should expect that $scope.login is defined and its success function is called when its called', function() {
             expect($scope.login).toBeDefined();
             expect(typeof $scope.login).toBe('function');
@@ -77,6 +79,7 @@ describe('Header Controller Unit Tests', function() {
             expect(Auth.setToken.called).toBe(true);
             expect($state.go.called).toBe(true);
         });
+
         it('Should expect that $scope.login and its failure function are called', function() {
             $scope.login();
             $httpBackend.flush();
@@ -88,14 +91,17 @@ describe('Header Controller Unit Tests', function() {
             expect($scope.messageLogin).toBe('Invalid Password!!');
             expect(typeof $scope.messageLogin).toBe('string');
         });
+
         it('Should define $scope.openLoginForm is defined and calls $mdSideNave when called', function() {
-          expect($scope.openLoginForm).toBeDefined();
-          $mdSidenav = sinon.stub().returns($mdSidenav);
-          $mdSidenav('right');
-          $mdSidenav.toggle = sinon.spy();
-          $scope.openLoginForm();
-          expect($mdSidenav.called).toBe(true);
+            expect($scope.openLoginForm).toBeDefined();
+            $mdSidenav = sinon.stub().returns($mdSidenav);
+            $mdSidenav('right');
+            $mdSidenav.toggle = sinon.spy();
+            $scope.openLoginForm();
+            expect($mdSidenav.called).toBe(true);
         });
+
+
         it('Should expect that $scope.logout is defiend and its success function is called when its called', function() {
             expect($scope.logout).toBeDefined();
             expect(typeof $scope.logout).toBe('function');
