@@ -1,6 +1,6 @@
 describe('Document Controller Unit Tests', function() {
     var $httpBackend, $scope, Documents, $mdDialog, Users,
-        $rootScope, $mdToast, DocumentsCtrl;
+        $rootScope, $mdToast, DocumentsCtrl, $mdSidenav;
     beforeEach(module('dms'));
     beforeEach(inject(function($injector, $controller) {
         $httpBackend = $injector.get('$httpBackend');
@@ -28,6 +28,11 @@ describe('Document Controller Unit Tests', function() {
             id: 'id',
             token: 'token'
         });
+        $httpBackend.whenPUT(/\/api\/users\/(.+)/, undefined, undefined, ['id'])
+            .respond(200, {
+                res: 'res'
+            });
+
         $scope = $rootScope;
         Documents = $injector.get('Documents');
         Documents.query = sinon.stub().returns({
@@ -37,6 +42,7 @@ describe('Document Controller Unit Tests', function() {
             res: 'res'
         });
         $mdDialog = $injector.get('$mdDialog');
+        $mdSidenav = $injector.get('$mdSidenav');
         $mdToast = $injector.get('$mdToast');
         Users = $injector.get('Users');
         Users.userDocuments = sinon.stub().returns({
@@ -68,6 +74,26 @@ describe('Document Controller Unit Tests', function() {
             expect($scope.userDocs.res).toBe('res');
         });
 
+        it('Should define openUserForm', function() {
+            expect($scope.openUserForm).toBeDefined();
+            expect(typeof $scope.openUserForm).toBe('function');
+            $mdSidenav = sinon.stub().returns($mdSidenav);
+            $mdSidenav('left');
+            $mdSidenav.toggle = sinon.spy()
+            $scope.openUserForm();
+            expect($mdSidenav.called).toBe(true);
+        });
+
+        it('Should define closeUserForm', function() {
+            expect($scope.closeUserForm).toBeDefined();
+            expect(typeof $scope.closeUserForm).toBe('function');
+            $mdSidenav = sinon.stub().returns($mdSidenav);
+            $mdSidenav('left');
+            $mdSidenav.toggle = sinon.spy()
+            $scope.closeUserForm();
+            expect($mdSidenav.called).toBe(true);
+        });
+
         it('Should test that Users.userDocuments and its error function are called', function() {
             $scope.getUserDocs();
             $httpBackend.flush();
@@ -79,6 +105,17 @@ describe('Document Controller Unit Tests', function() {
             expect(console.log.called).toBe(true);
         });
 
+        it('Should define updateUser function', function() {
+            expect($scope.updateUser).toBeDefined();
+            expect(typeof $scope.updateUser).toBe('function');
+            Users.update = sinon.spy();
+            $scope.updateUser();
+            $httpBackend.flush();
+            expect(Users.update.called).toBe(true);
+            Users.update.args[0][1]({
+                res: 'res',
+            });
+        });
         it('Should test that Documents.query function is called when loadAllDocs is called', function() {
             $scope.loadAllDocs();
             $httpBackend.flush();
@@ -120,17 +157,17 @@ describe('Document Controller Unit Tests', function() {
             expect($mdToast.show.called).toBe(true);
         });
         it('Should test that $scope.openOffScreen is defined', function() {
-          var doc = {
-            title: 'title',
-            content: 'content'
-          };
-          expect($scope.openOffscreen).toBeDefined();
-          expect(typeof $scope.openOffscreen).toBe('function');
-          $mdDialog.show = sinon.stub();
-          $scope.openOffscreen('ev', doc);
-          expect($rootScope.isUpdating).toBeDefined();
-          expect($rootScope.doc).toBeDefined();
-          expect($mdDialog.show.called).toBe(true);
+            var doc = {
+                title: 'title',
+                content: 'content'
+            };
+            expect($scope.openOffscreen).toBeDefined();
+            expect(typeof $scope.openOffscreen).toBe('function');
+            $mdDialog.show = sinon.stub();
+            $scope.openOffscreen('ev', doc);
+            expect($rootScope.isUpdating).toBeDefined();
+            expect($rootScope.doc).toBeDefined();
+            expect($mdDialog.show.called).toBe(true);
         });
     });
 

@@ -73,7 +73,6 @@
                         });
                         var user_details = user;
                         user_details.password = '';
-                        console.log(user_details.password);
                         res.json({
                             success: true,
                             message: 'User successfully logged in',
@@ -104,6 +103,11 @@
                                 return res.status(404).json({
                                     message: 'User not found'
                                 });
+                            }
+                            if (user._doc) {
+                                req.decoded = user._doc;
+                            } else {
+                                req.decoded = user;
                             }
                             req.decoded = user;
                             user.password = '';

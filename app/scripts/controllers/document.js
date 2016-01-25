@@ -68,11 +68,6 @@ angular.module('dms.controllers')
                 });
             };
 
-            $scope.readDocument = function(ev, doc) {
-                $rootScope.readDocument = true;
-                $scope.openOffscreen(ev, doc);
-            };
-
             // Open User Form to allow User to update his details
             $scope.openUserForm = function() {
                 $mdSidenav('left').toggle();
