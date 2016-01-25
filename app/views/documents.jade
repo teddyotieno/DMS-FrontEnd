@@ -82,7 +82,7 @@
           md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated' | limitTo:'4'")
             md-card
               md-card-title-text
-                h3.md-padding {{document.title | limitTo: 50}}
+                h3.md-padding {{document.title | limitTo: 60}}
               md-card-content
                 p {{document.content}}
               md-card-title-text.recentDocFooter
