@@ -79,7 +79,7 @@ describe('Document Controller Unit Tests', function() {
             expect(typeof $scope.openUserForm).toBe('function');
             $mdSidenav = sinon.stub().returns($mdSidenav);
             $mdSidenav('left');
-            $mdSidenav.toggle = sinon.spy()
+            $mdSidenav.toggle = sinon.spy();
             $scope.openUserForm();
             expect($mdSidenav.called).toBe(true);
         });
