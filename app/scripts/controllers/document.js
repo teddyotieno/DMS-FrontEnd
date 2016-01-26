@@ -16,7 +16,6 @@ angular.module('dms.controllers')
                             console.log(err);
                         } else {
                             $scope.userDocs = res;
-                            console.log(res);
                         }
                     });
                 }
@@ -31,6 +30,11 @@ angular.module('dms.controllers')
             // Listen to the documentCreated event and run $scope.getUserDocs()
             $rootScope.$on('documentCreated', function() {
                 $scope.getUserDocs();
+            });
+
+            // Listen to the User Details event and run $scope.openUserForm()
+            $rootScope.$on('User Details', function() {
+              $scope.openUserForm();
             });
 
             // Delete user document
