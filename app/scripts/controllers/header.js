@@ -31,7 +31,7 @@ angular.module('dms.controllers')
                         console.log(err);
                         if (err.message === 'Authentication failed. ' +
                             'User not found') {
-                            $scope.messageLogin = 'Invalid Username!!';
+                            $scope.messageLogin = 'Unauthenticated user, Please Signup to continue';
                         } else if (err.message || err[0].message ||
                             err.error === 'Authentication failed. ' +
                             'Wrong password') {
