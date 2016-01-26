@@ -1,7 +1,7 @@
 .header(ng-controller='HeaderCtrl' ng-cloak)
   md-toolbar
     .md-toolbar-tools
-      md-button.md-icon-button.home-button(aria-label='Home')
+      md-button.md-icon-button.home-button(aria-label='Home' ui-sref='home')
         md-icon(md-svg-icon='../images/logo.svg')
       span(flex)
       md-button.md-raised.other-buttons(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
