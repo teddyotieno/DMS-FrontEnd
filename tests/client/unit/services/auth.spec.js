@@ -1,5 +1,4 @@
 describe('Authentication Service Test', function() {
-
     beforeEach(function() {
         module('dms');
     });

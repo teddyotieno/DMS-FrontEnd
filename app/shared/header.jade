@@ -6,10 +6,21 @@
       span(flex)
       md-button.md-raised.other-buttons(aria-label='Sign Up' ui-sref='signup' ng-if='!currentUser')
         | Sign Up
-      md-button.other-buttons.app-icons(aria-label='Sign Out' ng-if='currentUser' ng-click='logout()')
-        md-icon
-          i(class='material-icons') keyboard_arrow_down
-        md-tooltip Logout
+      .logout(ng-if='currentUser' layout='row')
+        p(ui-sref='documents') {{currentUser.name.first}} {{currentUser.name.second}}
+        md-menu(md-position-mode='target-right target')
+          md-button(aria-label='Sign Out' ng-click='$mdOpenMenu($event)')
+            md-icon
+              i(class='material-icons') keyboard_arrow_down
+            md-tooltip Logout
+          md-menu-content(width='3' style='margin-top:60px')
+            md-menu-item(style='background: rgb(41,38,47)')
+              md-button(ng-click='openUserForm()')
+                p(flex) User Details
+            md-menu-item(style='background: rgb(41,38,47)')
+              md-button(ng-click='logout()')
+                p(flex) Logout
+
       md-button.md-raised.other-buttons(aria-label='Log In form' ng-click='openLoginForm()' ng-hide='isOpenRight()' style='margin-right: 40px' ng-if='!currentUser')
         a Log In
   .mdSideNav
@@ -28,6 +39,4 @@
         md-button.md-raised(aria-label='Sign In' ng-click='login()' style='box-shadow: none; background-color: rgb(0,209,193)').signUpHeader
           | SUBMIT
         p {{messageLogin}}
-
-
 

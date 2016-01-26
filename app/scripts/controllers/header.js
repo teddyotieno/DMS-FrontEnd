@@ -41,6 +41,11 @@ angular.module('dms.controllers')
                 });
             };
 
+            $scope.openUserForm = function() {
+                $rootScope.$emit('User Details', 'Open User ' +
+                    'Details Side Navigation');
+            };
+
             $scope.logout = function() {
                 Users.logout(function(err, res) {
                     if (!err && res) {

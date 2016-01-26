@@ -9,15 +9,18 @@ describe('Form Controller Unit Tests', function() {
         $rootScope.currentUser = {
             _id: '_id'
         };
+
         $rootScope.doc = null;
         $httpBackend.when('GET', '/api/users/session').respond(200, {
             id: 'id',
             token: 'token'
         });
+
         $httpBackend.when('GET', 'views/home.html').respond(200, {
             id: 'id',
             token: 'token'
         });
+
         $httpBackend.whenPOST(/\/api\/documents\/(.+)/, undefined, undefined, ['id']).respond(500, {
             id: 'id',
             token: 'token'

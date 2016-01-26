@@ -36,7 +36,6 @@ angular.module('dms.services')
         };
 
         obj.userDocuments = function(user, cb) {
-          console.log(user);
             $http.get('/api/users/' + user._id + '/documents')
                 .success(function(res) {
                     cb(null, res);
@@ -47,5 +46,3 @@ angular.module('dms.services')
 
         return obj;
     }]);
-
-
