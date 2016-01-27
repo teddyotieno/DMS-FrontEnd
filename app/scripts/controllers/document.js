@@ -27,15 +27,17 @@ angular.module('dms.controllers')
                 $scope.allDocuments = Documents.query();
             };
 
+            // Listen to the User Details event and run $scope.openUserForm()
+            $rootScope.$on('User Details', function() {
+                $mdSidenav('left').toggle();
+            });
+
             // Listen to the documentCreated event and run $scope.getUserDocs()
             $rootScope.$on('documentCreated', function() {
                 $scope.getUserDocs();
             });
 
-            // Listen to the User Details event and run $scope.openUserForm()
-            $rootScope.$on('User Details', function() {
-              $scope.openUserForm();
-            });
+
 
             // Delete user document
             $scope.deleteUserDoc = function(ev, doc) {
