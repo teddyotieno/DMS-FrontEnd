@@ -28,10 +28,9 @@ angular.module('dms.controllers')
                         $scope.closeLoginForm();
                         $state.go('documents');
                     } else {
-                        console.log(err);
                         if (err.message === 'Authentication failed. ' +
                             'User not found') {
-                            $scope.messageLogin = 'Unauthenticated user, Please Signup to continue';
+                            $scope.messageLogin = 'User doesn\'t exist';
                         } else if (err.message || err[0].message ||
                             err.error === 'Authentication failed. ' +
                             'Wrong password') {
@@ -41,9 +40,8 @@ angular.module('dms.controllers')
                 });
             };
 
-            $scope.openUserForm = function() {
-                $rootScope.$emit('User Details', 'Open User ' +
-                    'Details Side Navigation');
+            $scope.openUserDetails = function() {
+                $rootScope.$emit('User Details', {message: 'Open User Form'});
             };
 
             $scope.logout = function() {
