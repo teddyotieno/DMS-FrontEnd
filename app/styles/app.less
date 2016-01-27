@@ -1,7 +1,22 @@
 // Styles for Body
-@media (max-width: 600px) {
-    .header-content {
-        background: rgb(41, 38, 47);
+@media (max-width: 1440px) {
+    .section-content {
+        top: 27% !important;
+    }
+}
+
+@media (max-width: 1280px) {
+    .section-content {
+        top: 25% !important;
+    }
+    .dynamic-text-section {
+      .dynamic-text-right {
+        font-size: 60px !important;
+        font-weight: 600 !important;
+      }
+      .dynamic-text-left {
+        font-size: 40px !important;
+      }
     }
 }
 
@@ -159,7 +174,7 @@ html body {
     .section-content {
         box-sizing: border-box;
         position: absolute;
-        top: 30%;
+        top: 33%;
         left: 50%;
         transform: translateY(-50%) translateX(-50%);
         max-width: 605px;
