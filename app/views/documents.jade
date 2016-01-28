@@ -13,48 +13,49 @@
 
 
   .documentChild70(flex='65' ng-cloak)
-    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left').userForm
-      md-toolbar
-      md-content(layout-padding='')
-        md-input-container.md-icon-float.md-block
-          label First Name
-          md-icon
-            i(class='material-icons') person
-          input(ng-model='user.name.first', type='text')
-        md-input-container.md-icon-float.md-block
-          label Last Name
-          md-icon
-            i(class='material-icons') person
-          input(ng-model='user.name.second', type='text')
-        md-input-container.md-icon-float.md-block
-          label Username
-          md-icon
-            i(class='material-icons') face
-          input(ng-model='user.username', type='text')
-        md-input-container.md-icon-float.md-block
-          label New Password
-          md-icon
-            i(class='material-icons') vpn_key
-          input(ng-model='user.password', type='password')
-        md-input-container.md-icon-float.md-block
-          label E-mail
-          md-icon
-            i(class='material-icons') email
-          input(ng-model='user.email', type='text')
-        md-input-container.md-icon-float.md-block
-          label Role
-          md-icon
-            i(class='material-icons') supervisor_account
-          input(ng-model='user.title', type='text')
-        md-button(style='background:rgb(0, 209,193)' ng-click='updateUser()')
-          | UPDATE DETAILS
+    md-progress-linear(md-mode='indeterminate' ng-hide='showProgress')
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left').userForm
+        md-toolbar
+        md-content(layout-padding='')
+          md-input-container.md-icon-float.md-block
+            label First Name
+            md-icon
+              i(class='material-icons') person
+            input(ng-model='user.name.first', type='text')
+          md-input-container.md-icon-float.md-block
+            label Last Name
+            md-icon
+              i(class='material-icons') person
+            input(ng-model='user.name.second', type='text')
+          md-input-container.md-icon-float.md-block
+            label Username
+            md-icon
+              i(class='material-icons') face
+            input(ng-model='user.username', type='text')
+          md-input-container.md-icon-float.md-block
+            label New Password
+            md-icon
+              i(class='material-icons') vpn_key
+            input(ng-model='user.password', type='password')
+          md-input-container.md-icon-float.md-block
+            label E-mail
+            md-icon
+              i(class='material-icons') email
+            input(ng-model='user.email', type='text')
+          md-input-container.md-icon-float.md-block
+            label Role
+            md-icon
+              i(class='material-icons') supervisor_account
+            input(ng-model='user.title', type='text')
+          md-button(style='background:rgb(0, 209,193)' ng-click='updateUser()')
+            | UPDATE DETAILS
 
 
     .md-padding
       h3 My Documents
       div(ng-cloak='')
         md-grid-list(md-cols-xs='1' md-cols-sm='2', md-cols-md='3', md-cols-gt-md='4', md-row-height-md='1:1.3' md-row-height-gt-md='1:1.3', md-row-height-sm='1:1.3', md-row-height-xs='2:2' md-gutter='8px', md-gutter-gt-sm='24px')
-          md-grid-tile.creteDocument(md-ink-ripple ng-click='openOffscreen($event)')
+          md-grid-tile.creteDocument(md-ink-ripple ng-click='openOffscreen($event)' style='cursor: pointer')
             img(src='../images/createDocument.png' style='width: 100%; height: 100%; border: 1px solid rgb(218,218,218)')
           md-grid-tile(style='border: 1px solid rgb(218,218,218)' layout='column' ng-repeat="document in userDocs | orderBy:'-dateCreated'")
             md-card(style='width: 100%; height: 100%; margin: 0px; word-wrap: break-word').ripple-container(md-ink-ripple)
