@@ -3,6 +3,7 @@ angular.module('dms.controllers')
         '$mdToast', '$rootScope',
         function($scope, Documents, $mdDialog, $mdToast, $rootScope) {
 
+            $rootScope.showProgress = true;
             // If rootscope.doc object has not been provided
             // then this is not an update
             // set it to false to invoke the right action
@@ -31,20 +32,24 @@ angular.module('dms.controllers')
                         $rootScope.isUpdating ? 'update' : 'save';
                     Documents[actionToTake]($scope.document,
                         function(err, doc) {
-                            if (err) {
-                                console.log(err);
+                            if ($rootScope.showProgress === true) {
+                                $rootScope.showProgress = false;
+                                if (err) {
+                                    console.log(err);
+                                }
+                                if (doc) {
+                                    $mdToast.show($mdToast.simple()
+                                        .textContent('Document ' +
+                                            $scope.buttonAction)
+                                        .hideDelay(3000));
+                                    $mdDialog.hide();
+                                    $rootScope.$emit('documentCreated', {
+                                        message: 'The document has been ' +
+                                            $scope.buttonAction + 'd'
+                                    });
+                                }
                             }
-                            if (doc) {
-                                $mdToast.show($mdToast.simple()
-                                    .textContent('Document ' +
-                                        $scope.buttonAction)
-                                    .hideDelay(3000));
-                                $mdDialog.hide();
-                                $rootScope.$emit('documentCreated', {
-                                    message: 'The document has been ' +
-                                        $scope.buttonAction + 'd'
-                                });
-                            }
+
                         });
                 }
             };

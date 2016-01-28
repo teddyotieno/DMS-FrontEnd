@@ -5,6 +5,8 @@ angular.module('dms.controllers')
             $rootScope, $mdToast, $mdSidenav) {
             $scope.user = $rootScope.currentUser;
 
+            $rootScope.showProgress = true;
+
             // Fetch all documents from the server when the app initializes
             $scope.allDocuments = Documents.query();
 
@@ -34,7 +36,10 @@ angular.module('dms.controllers')
 
             // Listen to the documentCreated event and run $scope.getUserDocs()
             $rootScope.$on('documentCreated', function() {
-                $scope.getUserDocs();
+                if ($rootScope.showProgress === false) {
+                    $rootScope.showProgress = true;
+                    $scope.getUserDocs();
+                }
             });
 
 
