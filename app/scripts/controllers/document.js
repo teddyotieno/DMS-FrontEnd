@@ -5,8 +5,15 @@ angular.module('dms.controllers')
             $rootScope, $mdToast, $mdSidenav) {
             $scope.user = $rootScope.currentUser;
 
+            // Initializes the user password to an empty string
+            $scope.userPassword = '';
+
             // Fetch all documents from the server when the app initializes
             $scope.allDocuments = Documents.query();
+
+            // Fetch all users from the server when the app
+            // initializes to display to user
+            $scope.users = Users.query();
 
             // Fetch all documents by the logged in User
             $scope.getUserDocs = function() {
@@ -27,6 +34,10 @@ angular.module('dms.controllers')
                 $scope.allDocuments = Documents.query();
             };
 
+            $scope.loadAllUsers = function() {
+                $scope.users = Users.query();
+            };
+
             // Listen to the User Details event and run $scope.openUserForm()
             $rootScope.$on('User Details', function() {
                 $mdSidenav('left').toggle();
@@ -37,7 +48,40 @@ angular.module('dms.controllers')
                 $scope.getUserDocs();
             });
 
+            $scope.listUsers = function() {
+                $mdSidenav('listUsers').toggle();
+            };
 
+            $scope.closeListUsers = function() {
+                $mdSidenav('listUsers').close();
+            };
+
+            $scope.deleteUser = function(ev, user) {
+                var confirm = $mdDialog.confirm()
+                    .title('Confirm if you want to delete the user')
+                    .textContent('Once you delete the user, ' +
+                        'there is no going back!')
+                    .ariaLabel('Delete User')
+                    .targetEvent(ev)
+                    .ok('Delete')
+                    .cancel('Cancel');
+                $mdDialog.show(confirm).then(function() {
+                    console.log(user);
+                    Users.remove({
+                        id: user._id
+                    }, function() {
+                        $scope.loadAllUsers();
+                        $mdToast.show($mdToast.simple()
+                            .textContent('User Deleted').hideDelay(2000));
+                        $scope.closeListUsers();
+                    });
+                }, function() {
+                    $mdToast.show($mdToast.simple()
+                        .textContent('User Retained').hideDelay(2000));
+                    $scope.closeListUsers();
+                });
+
+            };
 
             // Delete user document
             $scope.deleteUserDoc = function(ev, doc) {
@@ -54,6 +98,7 @@ angular.module('dms.controllers')
                         id: doc._id
                     }, function() {
                         $scope.getUserDocs();
+                        $scope.loadAllDocs();
                         $mdToast.show($mdToast.simple()
                             .textContent('Document Deleted').hideDelay(2000));
                     });
@@ -85,20 +130,25 @@ angular.module('dms.controllers')
                 $mdSidenav('left').close();
             };
 
-            $scope.updateUser = function() {
-                if ($scope.user === $rootScope.currentUser) {
-                    Users.update($scope.user, function(res) {
-                        $rootScope.currentUser = res.user;
-                        $mdToast.show($mdToast.simple()
-                            .textContent('User Details Updated')
-                            .hideDelay(2000));
-                        $scope.closeUserForm();
+            // Open all Users to update User by Admin
+            $scope.updateUser = function(user) {
+                if (user) {
+                    user.password = $scope.userPassword;
+                    Users.update(user, function(res) {
+                        if (res) {
+                            $mdToast.show($mdToast.simple()
+                                .textContent('User Details Updated')
+                                .hideDelay(2000));
+                        }
                     });
-                } else {
-                    $mdToast.show($mdToast.simple()
-                        .textContent('Nothing to Update').hideDelay(2000));
                 }
-
+                Users.update($scope.user, function(res) {
+                    $rootScope.currentUser = res.user;
+                    $mdToast.show($mdToast.simple()
+                        .textContent('User Details Updated')
+                        .hideDelay(2000));
+                    $scope.closeUserForm();
+                });
             };
 
             function DialogController($scope, $mdDialog) {
