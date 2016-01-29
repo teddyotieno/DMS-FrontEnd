@@ -129,6 +129,7 @@ describe('Document Controller Unit Tests', function() {
             expect($rootScope.$on.called).toBe(true);
             $scope.getUserDocs = sinon.spy();
             $rootScope.$on.args[0][1]();
+            expect($scope.getUserDocs.called).toBe(true);
         });
 
         it('Should test the deleteUserDoc function is defined', function() {

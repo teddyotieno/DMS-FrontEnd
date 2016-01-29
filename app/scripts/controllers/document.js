@@ -45,7 +45,10 @@ angular.module('dms.controllers')
 
             // Listen to the documentCreated event and run $scope.getUserDocs()
             $rootScope.$on('documentCreated', function() {
-                $scope.getUserDocs();
+                if ($rootScope.showProgress === false) {
+                    $rootScope.showProgress = true;
+                    $scope.getUserDocs();
+                }
             });
 
             $scope.listUsers = function() {
