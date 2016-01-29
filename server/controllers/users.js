@@ -54,7 +54,7 @@
                     throw err;
                 }
                 if (!user) {
-                    res.status(500).json({
+                    res.status(401).json({
                         success: false,
                         message: 'Authentication failed. User not found'
                     });
@@ -62,7 +62,7 @@
                     // Check if password matches
                     var validPassword = user.comparePassword(req.body.password);
                     if (!validPassword) {
-                        res.status(500).json({
+                        res.status(401).json({
                             success: false,
                             message: 'Authentication failed. Wrong password'
                         });
