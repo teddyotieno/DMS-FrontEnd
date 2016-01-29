@@ -118,7 +118,7 @@
     md-sidenav(md-is-locked-open="$mdMedia('gt-sm')")
       md-content
         md-list
-          h3.md-padding(style='margin-bottom: 20px' ng-if="!currentUser.title === 'Admin'") Recent Documents
+          h3.md-padding(style='margin-bottom: 20px' ng-if="currentUser.title === 'Public'") Recent Documents
           h3.md-padding(style='margin-bottom: 20px' ng-if="currentUser.title === 'Admin'") All Documents
           md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated' | limitTo:'20'")
             md-card(style='word-wrap: break-word')
