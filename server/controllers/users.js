@@ -185,7 +185,6 @@
                     user.email = req.body.email;
                 }
 
-                console.log('Almost Updating');
                 // Save the user
                 user.save(function(err) {
                     if (err) {
@@ -197,14 +196,13 @@
                         user: user_details
                     });
                 });
-                console.log('Updated');
             });
         },
 
         // Deletes the User
         delete: function(req, res) {
             User.remove({
-                _id: req.params.user_id
+                _id: req.params.id
             }, function(err) {
                 if (err) {
                     res.send(err);

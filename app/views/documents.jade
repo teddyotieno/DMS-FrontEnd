@@ -10,46 +10,85 @@
         md-icon
           i(class='material-icons') face
         md-tooltip User Profile
-
+      md-button(md-fab aria-label='List Users' ng-click='listUsers()' ng-if="currentUser.title === 'Admin'")
+        md-icon
+          i(class='material-icons') supervisor_account
+        md-tooltip Users
 
   .documentChild70(flex='65' ng-cloak)
-    md-progress-linear(md-mode='indeterminate' ng-hide='showProgress')
-      md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left').userForm
+    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='listUsers').listUsers
+      md-list
         md-toolbar
-        md-content(layout-padding='')
-          md-input-container.md-icon-float.md-block
-            label First Name
-            md-icon
-              i(class='material-icons') person
-            input(ng-model='user.name.first', type='text')
-          md-input-container.md-icon-float.md-block
-            label Last Name
-            md-icon
-              i(class='material-icons') person
-            input(ng-model='user.name.second', type='text')
-          md-input-container.md-icon-float.md-block
-            label Username
-            md-icon
-              i(class='material-icons') face
-            input(ng-model='user.username', type='text')
-          md-input-container.md-icon-float.md-block
-            label New Password
-            md-icon
-              i(class='material-icons') vpn_key
-            input(ng-model='user.password', type='password')
-          md-input-container.md-icon-float.md-block
-            label E-mail
-            md-icon
-              i(class='material-icons') email
-            input(ng-model='user.email', type='text')
-          md-input-container.md-icon-float.md-block
-            label Role
-            md-icon
-              i(class='material-icons') supervisor_account
-            input(ng-model='user.title', type='text')
-          md-button(style='background:rgb(0, 209,193)' ng-click='updateUser()')
-            | UPDATE DETAILS
+        h3(style='text-align: center; font-weight: 600') USERS
+        md-list-item(ng-repeat="user in users | orderBy:'-dateCreated'")
+          md-card(style='text-align: center;')
+            div(layout='row')
+              md-input-container.md-block
+                p(style='margin: 0px') First Name
+                input(ng-model='user.name.first' style='text-align: center' aria-label='User First Name')
+              md-input-container.md-block
+                p(style='margin: 0px') Second Name
+                input(ng-model='user.name.second' style='text-align: center' aria-label='User Second Name')
+            div(layout='row' style='margin-top: -45px')
+              md-input-container.md-block
+                p(style='margin: 0px') Username
+                input(ng-model='user.username' style='text-align: center' aria-label='User Password')
+              md-input-container.md-block
+                p(style='margin: 0px') Role
+                input(ng-model='user.title' style='text-align: center' aria-label='User Role')
+            div(layout='row' style='margin-top: -45px')
+              md-input-container.md-block
+                p(style='margin: 0px') New Password
+                input(ng-model='userPassword' style='text-align: center' aria-label='User Password' type='password')
+              md-input-container.md-block
+                p(style='margin: 0px') Email
+                input(ng-model='user.email' style='text-align: center' aria-label='User Email')
+            div
+              md-card-actions
+                md-button.app-icons(ng-click='updateUser(user)')
+                    md-icon
+                      i(class='material-icons') update
+                    md-tooltip Update User
+                md-button.app-icons(ng-click='deleteUser($event, user)')
+                    md-icon
+                      i(class='material-icons') delete
+                    md-tooltip Delete User
 
+    md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id='left').userForm
+      md-toolbar
+      md-content(layout-padding='')
+        md-input-container.md-icon-float.md-block
+          label First Name
+          md-icon
+            i(class='material-icons') person
+          input(ng-model='user.name.first', type='text')
+        md-input-container.md-icon-float.md-block
+          label Last Name
+          md-icon
+            i(class='material-icons') person
+          input(ng-model='user.name.second', type='text')
+        md-input-container.md-icon-float.md-block
+          label Username
+          md-icon
+            i(class='material-icons') face
+          input(ng-model='user.username', type='text')
+        md-input-container.md-icon-float.md-block
+          label New Password
+          md-icon
+            i(class='material-icons') vpn_key
+          input(ng-model='user.password', type='password')
+        md-input-container.md-icon-float.md-block
+          label E-mail
+          md-icon
+            i(class='material-icons') email
+          input(ng-model='user.email', type='text')
+        md-input-container.md-icon-float.md-block
+          label Role
+          md-icon
+            i(class='material-icons') supervisor_account
+          input(ng-model='user.title', type='text')
+        md-button(style='background:rgb(0, 209,193)' ng-click='updateUser()')
+          | UPDATE DETAILS
 
     .md-padding
       h3 My Documents
@@ -79,8 +118,9 @@
     md-sidenav(md-is-locked-open="$mdMedia('gt-sm')")
       md-content
         md-list
-          h3.md-padding(style='margin-bottom: 20px') Recent Documents
-          md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated' | limitTo:'4'")
+          h3.md-padding(style='margin-bottom: 20px' ng-if="!currentUser.title === 'Admin'") Recent Documents
+          h3.md-padding(style='margin-bottom: 20px' ng-if="currentUser.title === 'Admin'") All Documents
+          md-list-item(ng-repeat="document in allDocuments | orderBy:'-dateCreated' | limitTo:'20'")
             md-card(style='word-wrap: break-word')
               md-card-title-text
                 h3.md-padding {{document.title | limitTo: 60}}
@@ -89,6 +129,20 @@
               md-card-title-text.recentDocFooter
                 p.md-padding Created by {{document.owner | limitTo: 800}}
                 p.md-padding(style='margin-bottom: 0px; color: white; padding-top: 0px') {{document.dateCreated | date: 'medium'}}
+              md-card-actions(layout='row' style='background: rgb(41,38,47); margin: 0px; padding-left: 10px' ng-if="currentUser.title === 'Admin'")
+                md-button.app-icons(ng-click='openOffscreen($event, document)')
+                  md-icon
+                    i(class='material-icons') update
+                  md-tooltip Update
+                md-button(ng-click='deleteUserDoc($event, document)').app-icons
+                  md-icon
+                    i(class='material-icons') delete
+                  md-tooltip Delete
+
+
+
+
+
 
 
 
